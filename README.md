@@ -20,7 +20,7 @@ Download
 ```
 mkdir dotfiles
 cd dotfiles
-curl -#L http://github.com/ffrizzo/dotfiles/tarball/master | tar -xvz --strip-components 1
+curl -#L http://github.com/felipefrizzo/dotfiles/tarball/master | tar -xvz --strip-components 1
 chmod +x *.sh
 sh setup.sh
 cd ..
