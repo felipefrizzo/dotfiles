@@ -1,0 +1,27 @@
+[user]
+	name = Felipe Frizzo
+	email = felipefrizzo@gmail.com
+[credential]
+	helper = osxkeychain
+[color]
+	diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+[merge]
+	summary = true
+[core]
+	excludesfile = $HOME/.gitignore_global
+	editor = open -a /Applications/Atom.app
+[push]
+	default = current
+[alias]
+	st=status
+	co=checkout
+	br=branch
+	rb=rebase
+	mg=merge
+	cm=commit -a --amend -C HEAD
+	ci=commit -a -v -m
+	pu=push
+	pl=pull
