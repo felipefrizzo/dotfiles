@@ -1,4 +1,4 @@
-Felipe Frizzo's dotfiles.
+#Felipe Frizzo's dotfiles.
 This repository include all of my custom dotfiles.
 
 This include the following step.
@@ -14,10 +14,10 @@ This include the following step.
 * install latest updates from app store
 * configure Dock with the applications
 
-Installation
+###Installation
 
 Download
-```
+```shell
 mkdir dotfiles
 cd dotfiles
 curl -#L http://github.com/felipefrizzo/dotfiles/tarball/master | tar -xvz --strip-components 1
