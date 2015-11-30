@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "\nInstaling Homebrew"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
@@ -20,7 +21,6 @@ brew install mercurial
 brew install wget
 brew install pyenv
 brew install pyenv-virtualenv
-brew install node
 
 # brew install dockutil
 brew install https://github.com/keith/homebrew/raw/ks-dockutil/Library/Formula/dockutil.rb
@@ -65,6 +65,13 @@ brew install pip-completion
 brew install django-completion
 brew install vagrant-completion
 brew install bash-completion
+brew install docker-completion
+
+#install homebrew docker formulas
+brew install docker
+brew install docker-machine
+brew install docker-compose
+brew install docker-swarm
 
 #install homebrew automation tools formulas
 brew install ansible
