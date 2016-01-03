@@ -22,11 +22,11 @@ from Foundation import CFPreferencesAppSynchronize
 # Standard Applications
 # =======================================
 appleApps = [
-    "/Applications/Mail.app"
+    "/Applications/Mail.app",
     "/Applications/Utilities/Terminal.app",
-    "/Applications/Safari.app"
-    "/Applications/iTunes.app"
-    "/Applications/System Preferences.app",
+    "/Applications/Safari.app",
+    "/Applications/iTunes.app",
+    "/Applications/System Preferences.app"
     ]
 
 # =======================================
@@ -35,32 +35,7 @@ appleApps = [
 # =======================================
 thirdPartyApps = [
     {
-    "path": "/Applications/pgAdmin3.app",
-    "args": [ "--after", "Terminal" ],
-    "forced": True
-    },
-    {
-    "path": "/Applications/SourceTree.app",
-    "args": [ "--after", "Terminal" ],
-    "forced": True
-    },
-    {
-    "path": "/Applications/Atom.app",
-    "args": [ "--after", "Terminal" ],
-    "forced": True
-    },
-    {
-    "path": "/Applications/WebStorm.app",
-    "args": [ "--after", "Terminal" ],
-    "forced": True
-    },
-    {
-    "path": "/Applications/Intellij IDEA 14.app",
-    "args": [ "--after", "Terminal" ],
-    "forced": True
-    },
-    {
-    "path": "/Applications/PyCharm.app",
+    "path": "/Applications/Opera developer.app",
     "args": [ "--after", "Terminal" ],
     "forced": True
     },
@@ -75,7 +50,27 @@ thirdPartyApps = [
     "forced": True
     },
     {
-    "path": "/Applications/Opera developer.app",
+    "path": "/Applications/PyCharm.app",
+    "args": [ "--after", "Terminal" ],
+    "forced": True
+    },
+    {
+    "path": "/Applications/Intellij IDEA 14.app",
+    "args": [ "--after", "Terminal" ],
+    "forced": True
+    },
+    {
+    "path": "/Applications/Atom.app",
+    "args": [ "--after", "Terminal" ],
+    "forced": True
+    },
+    {
+    "path": "/Applications/SourceTree.app",
+    "args": [ "--after", "Terminal" ],
+    "forced": True
+    },
+    {
+    "path": "/Applications/pgAdmin3.app",
     "args": [ "--after", "Terminal" ],
     "forced": True
     },
@@ -85,15 +80,15 @@ thirdPartyApps = [
     "forced": True
     },
     {
-    "path": "/Applications/Spotify.app",
+    "path": "/Applications/VMware Fusion.app",
     "args": [ "--after", "iTunes" ],
     "forced": True
     },
     {
-    "path": "/Applications/VMware Fusion.app",
+    "path": "/Applications/Spotify.app",
     "args": [ "--after", "iTunes" ],
     "forced": True
-    }
+    },
     ]
 
 dockutilPath = ""
@@ -154,24 +149,25 @@ def addFolders():
     """
     username = getpass.getuser()
     pathsToCheckInDisks = [ "Users", "home" ]
-    foldersToAdd = [ "Documents", "Downloads" ]
+    # foldersToAdd = [ "Documents", "Downloads" ]
+    foldersToAdd = [ "Downloads" ]
     for aDisk in localDisks():
         diskPath = os.path.join("/Volumes", aDisk)
         for aPath in pathsToCheckInDisks:
             homePath = os.path.join(diskPath, aPath, username)
             homePath = os.path.realpath(homePath)
-            documents = os.path.join(homePath, "Documents")
+            # documents = os.path.join(homePath, "Documents")
             downloads = os.path.join(homePath, "Downloads")
-            if os.path.exists(documents):
-                print "Adding %s" % documents
-                label = "Documents"
-                args = [
-                    "--view", "fan",
-                    "--display", "stack",
-                    "--sort", "name",
-                    "--label", label
-                    ]
-                dockutilAdd(documents, args)
+            # if os.path.exists(documents):
+            #     print "Adding %s" % documents
+            #     label = "Documents"
+            #     args = [
+            #         "--view", "fan",
+            #         "--display", "stack",
+            #         "--sort", "name",
+            #         "--label", label
+            #         ]
+            #     dockutilAdd(documents, args)
             if os.path.exists(downloads):
                 print "Adding %s" % downloads
                 label = "Downloads"
