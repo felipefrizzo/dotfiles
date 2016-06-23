@@ -21,6 +21,7 @@ brew install mercurial
 brew install wget
 brew install pyenv
 brew install pyenv-virtualenv
+brew install nvm
 
 # brew install dockutil
 brew install https://github.com/keith/homebrew/raw/ks-dockutil/Library/Formula/dockutil.rb
@@ -49,11 +50,14 @@ brew cask install atom
 brew cask install intellij-idea
 brew cask install pycharm
 brew cask install webstorm
+brew cask install postamn
 
 brew cask install sourcetree
 brew cask install diffmerge
 
+brew cask install mongochef
 brew cask install pgadmin3
+brew cask install mysqlworkbench
 
 IS_LAPTOP=`/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book"`
 if [[ "$IS_LAPTOP" != "" ]]; then
@@ -65,16 +69,14 @@ brew install pip-completion
 brew install django-completion
 brew install vagrant-completion
 brew install bash-completion
-brew install docker-completion
 
 #install homebrew docker formulas
 brew install docker
+brew install docker-completion
+brew install docker-machine-completion
 brew install docker-machine
+brew install docker-compose-completion
 brew install docker-compose
-brew install docker-swarm
-
-#install homebrew automation tools formulas
-brew install ansible
 
 #create /opt/java folder
 sudo mkdir -p /opt/java/
