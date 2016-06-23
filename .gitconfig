@@ -12,7 +12,7 @@
 	summary = true
 [core]
 	excludesfile = $HOME/.gitignore_global
-	editor = open -a /Applications/Atom.app
+	editor = open -a /Atom.app
 [push]
 	default = current
 [alias]
