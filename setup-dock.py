@@ -22,7 +22,6 @@ from Foundation import CFPreferencesAppSynchronize
 # Standard Applications
 # =======================================
 appleApps = [
-    "/Applications/Mail.app",
     "/Applications/Utilities/Terminal.app",
     "/Applications/Safari.app",
     "/Applications/iTunes.app",
@@ -55,7 +54,7 @@ thirdPartyApps = [
     "forced": True
     },
     {
-    "path": "/Applications/Intellij IDEA 14.app",
+    "path": "/Applications/Intellij IDEA CE.app",
     "args": [ "--after", "Terminal" ],
     "forced": True
     },
@@ -70,12 +69,22 @@ thirdPartyApps = [
     "forced": True
     },
     {
+    "path": "/Applications/MongoChef.app",
+    "args": [ "--after", "Terminal" ],
+    "forced": True
+    },
+    {
     "path": "/Applications/pgAdmin3.app",
     "args": [ "--after", "Terminal" ],
     "forced": True
     },
     {
     "path": "/Applications/Skype.app",
+    "args": [ "--after", "Safari" ],
+    "forced": True
+    },
+    {
+    "path": "/Applications/Slack.app",
     "args": [ "--after", "Safari" ],
     "forced": True
     },
