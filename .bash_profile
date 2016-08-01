@@ -41,8 +41,7 @@ alias home='cd ~'
 alias arquivos='cd /Volumes/Arquivos'
 alias workspace='cd ~/Documents/workspaces'
 
-alias gitf=git-flow
-alias gcma=git commit -am
-alias ga=git add .
-alias gp=git push
-alias gr=git rebase
+alias gcma='git commit -am'
+alias ga='git add .'
+alias gp='git push'
+alias gr='git rebase'
