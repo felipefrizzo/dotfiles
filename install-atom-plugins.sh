@@ -28,8 +28,6 @@ apm install mathjax-wrapper
 
 apm install es6-javascript
 apm install angularjs
-apm install react
-apm install redux-snippets
 
 apm install color-picker
 apm install tab-numbers
