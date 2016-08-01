@@ -1,9 +1,10 @@
+#!/bin/bash
 echo "\nSetup OsX"
 
 sh install-cli-tools.sh
 sh install-homebrew.sh
 sh install-atom-plugins.sh
-sh install external-software.sh
+sh install-external-software.sh
 
 sudo sh osx-system-defaults.sh
 sh osx-user-defaults.sh
