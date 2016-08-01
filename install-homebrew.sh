@@ -71,13 +71,17 @@ brew install vagrant-completion
 brew install bash-completion
 
 #install homebrew docker formulas
-brew install docker
 brew install docker-completion
-brew install docker-machine-completion
-brew install docker-machine
 brew install docker-compose-completion
+brew install docker-machine-completion
+brew install docker
 brew install docker-compose
+brew install docker-machine
 
 #create /opt/java folder
 sudo mkdir -p /opt/java/
 sudo chmod 777 /opt/java
+
+echo "\nCleanup brew"
+brew cleanup
+brew cask cleanup
