@@ -1,11 +1,13 @@
 #!/bin/bash
-echo "\nInstaling Homebrew"
+echo ""
+echo "Instaling Homebrew"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 #installl homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-echo "\nInstaling applications from homebrew"
+echo ""
+echo "Instaling applications from homebrew"
 
 #install homebrew-cask
 brew install caskroom/cask/brew-cask
@@ -19,12 +21,13 @@ brew install dos2unix
 brew install git
 brew install mercurial
 brew install wget
+brew install nvm
+brew install go
 brew install pyenv
 brew install pyenv-virtualenv
-brew install nvm
 
-# brew install dockutil
-brew install https://github.com/keith/homebrew/raw/ks-dockutil/Library/Formula/dockutil.rb
+#brew install dockutil
+brew install dockutil
 
 #install hombrew cask formulas
 brew cask install utorrent
@@ -39,8 +42,10 @@ brew cask install spotify
 brew cask install the-unarchiver
 brew cask install vlc
 brew cask install skype
+brew cask install slack
 
 brew cask install java
+brew install git-credential-manager
 
 brew cask install virtualbox
 brew cask install vmware-fusion
@@ -49,7 +54,6 @@ brew cask install vagrant
 brew cask install atom
 brew cask install intellij-idea
 brew cask install pycharm
-brew cask install webstorm
 brew cask install postamn
 
 brew cask install sourcetree
@@ -82,6 +86,7 @@ brew install docker-machine
 sudo mkdir -p /opt/java/
 sudo chmod 777 /opt/java
 
-echo "\nCleanup brew"
+echo ""
+echo "Cleanup brew"
 brew cleanup
 brew cask cleanup
