@@ -1,4 +1,5 @@
-echo "\nSet OsX user defaults"
+echo ""
+echo "Set OsX user defaults"
 
 # ==============================================
 # Trackpad
@@ -11,7 +12,7 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightC
 # Secondary click
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool false
 
 
 defaults write com.apple.dock showMissionControlGestureEnabled -bool true
@@ -67,7 +68,7 @@ defaults write com.apple.Safari ShowFavoritesBar -bool true
 defaults write com.apple.Safari "ShowFavoritesBar-v2" -bool true
 
 # New tabs open with: Empty Page
-defaults write com.apple.Safari NewTabBehavior -int 1
+defaults write com.apple.Safari NewTabBehavior -int 4
 
 # Homepage
 defaults write com.apple.Safari HomePage -string "about:blank"
@@ -100,7 +101,7 @@ defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
 # Sound
 # ==============================================
 # Disable user interface sound efects
-defaults write NSGlobalDomain "com.apple.sound.beep.feedback" -bool false
+defaults write NSGlobalDomain "com.apple.sound.beep.feedback" -bool true
 defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -bool false
 
 # ==============================================
@@ -112,7 +113,7 @@ defaults write com.apple.screencapture location -string "$HOME/Downloads"
 # Time Machine
 # ==============================================
 # Prevent Time Machine from prompting to use new hard drives as backup volume
- defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # ==============================================
 # Applications
