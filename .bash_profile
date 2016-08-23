@@ -39,7 +39,7 @@ alias ls='ls -a'
 alias cd..='cd ..'
 alias home='cd ~'
 alias arquivos='cd /Volumes/Arquivos'
-alias workspace='cd ~/Documents/workspaces'
+alias workspace='cd /Volumes/Arquivos/workspaces/'
 
 alias gcma='git commit -am'
 alias ga='git add .'
