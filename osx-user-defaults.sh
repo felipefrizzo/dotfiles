@@ -120,3 +120,10 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 # ==============================================
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# ==============================================
+# User
+# ==============================================
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
