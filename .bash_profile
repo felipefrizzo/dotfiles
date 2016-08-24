@@ -28,7 +28,7 @@ export EDITOR='open -a Atom.app'
 export NVM_DIR=$HOME/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-export PATH="$HOME/.pyenv/bin:$PATH"
+export PYENV_ROOT=/usr/local/var/pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
