@@ -1,0 +1,48 @@
+"*":
+  "atom-ctags":
+    autoBuildTagsWhenActive: true
+  "autocomplete-go": {}
+  autosave:
+    enabled: true
+  core:
+    disabledPackages: [
+      "welcome"
+      "symbols-view"
+      "autocomplete-glsl"
+      "atom-ctags"
+      "dash"
+      "go-rename"
+      "go-get"
+      "mathjax-wrapper"
+      "react"
+    ]
+    excludeVcsIgnoredPaths: false
+  dyndocker: {}
+  editor:
+    fontSize: 13
+    invisibles: {}
+    preferredLineLength: 79
+    tabType: "soft"
+    showIndentGuide: true
+    tabLength: 4
+  "exception-reporting":
+    userId: "beca608e-8581-bdfe-3bde-a1a9bd166fed"
+  "file-icons": {}
+  "go-oracle": {}
+  "go-plus": {}
+  "go-rename": {}
+  "gometalinter-linter": {}
+  linter:
+    errorPanelHeight: 71
+    gutterPosition: "Left"
+    underlineIssues: false
+  react: {}
+  tabs:
+    addNewTabsAtEnd: true
+  "tester-go": {}
+  "tree-view": {}
+  welcome:
+    showOnStartup: false
+".ruby.source":
+  editor:
+    tabLength: 2

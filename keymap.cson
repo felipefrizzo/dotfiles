@@ -1,0 +1,5 @@
+'.workspace .editor':
+    'ctrl-alt-up': 'editor:add-selection-above'
+    'ctrl-alt-down': 'editor:add-selection-below'
+'.editor':
+    'ctrl-alt-l': 'atom-beautify:beautify-editor'

@@ -32,6 +32,9 @@ export PYENV_ROOT=/usr/local/var/pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+export GOPATH=$HOME/Documents/workspaces/go/
+export PATH=$PATH:$GOPATH/bin
+
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/
 
 #alias
@@ -46,3 +49,6 @@ alias gcma='git commit -am'
 alias ga='git add .'
 alias gp='git push'
 alias gr='git rebase'
+
+# Run source on bash_completion at the end of file to make sure process all alias
+source $HOME/.bash_completion

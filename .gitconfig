@@ -25,3 +25,5 @@
 	ci=commit -a -v -m
 	pu=push
 	pl=pull
+    branches=branch -a
+    remotes=remote -v

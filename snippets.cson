@@ -1,0 +1,313 @@
+########################
+# JavaScript
+########################
+'.source.js':
+
+  # Console
+  'Console log':
+    'prefix': 'log'
+    'body': """
+    console.log(${1});
+    """
+
+  'Console group':
+    'prefix': 'group'
+    'body': """
+    console.group('${1}');
+    console.log(${2});
+    console.groupEnd();
+    """
+
+  'Console warn':
+    'prefix': 'warn'
+    'body': """
+    console.warn('${1}');
+    """
+
+  # DOM
+  'querySelector':
+    'prefix': 'one'
+    'body': """
+    ${1:document}.querySelector('${2:selector}')
+    """
+
+  'querySelectorAll':
+    'prefix': 'all'
+    'body': """
+    ${1:document}.querySelectorAll('${2:selector}')
+    """
+
+  'getElementById':
+    'prefix': 'gi'
+    'body': """
+    ${1:document}.getElementById('${2:selector}')
+    """
+
+  'getElementByTagName':
+    'prefix': 'gt'
+    'body': """
+    ${1:document}.getElementByTagName('${2:selector}')
+    """
+
+  # Functions
+  'Function':
+    'prefix': 'fn'
+    'body': """
+    function ${1} (${2}) {
+      ${3}
+    }
+    """
+  'Anonymous Function':
+    'prefix': 'afn'
+    'body': """
+    function (${1}) {
+      ${2}
+    }
+    """
+
+  'IIFE':
+    'prefix': 'iife'
+    'body': """
+    (function (${1}) {
+      ${2}
+    })(${3});
+    """
+
+  # Testing
+  'Describe':
+    'prefix': 'de'
+    'body': """
+    describe('${1}', function () {
+      ${2}
+    });
+    """
+
+  'It':
+    'prefix': 'it'
+    'body': """
+    it('${1}', function () {
+      ${2}
+    });
+    """
+
+  'It Should':
+    'prefix': 'sh'
+    'body': """
+    it('Should ${1}.', function () {
+      ${2}
+    });
+    """
+########################
+# GoLang
+########################
+'GoLang: component':
+  'prefix' : 'main'
+  'body' : """
+  package ${1}
+  func main  {
+
+  }
+  """
+
+########################
+# React
+########################
+  'React: component':
+    'prefix' : 'rcm'
+    'body' : """
+    class ${1} extends React.Component {
+      constructor () {
+        super();
+      }
+
+      render () {
+        ${2}
+      }
+    }
+    """
+
+  'React: export default component':
+    'prefix' : 'expdrcm'
+    'body' : """
+    export default class ${1} extends React.Component {
+      constructor () {
+        super();
+      }
+
+      render () {
+        ${2}
+      }
+    }
+    """
+
+  'React: componentDidMount () { ... }':
+    'prefix' : 'cdm'
+    'body' : """
+    componentDidMount () {
+      ${1}
+    }
+    """
+
+  'React: componentDidUpdate (pp, ps) { ... }':
+    'prefix': 'cdup'
+    'body': """
+    componentDidUpdate (prevProps, prevState) {
+      ${1}
+    }
+    """
+
+  'React: componentWillMount () { ... }':
+    'prefix': 'cwm'
+    'body': """
+    componentWillMount () {
+      ${1}
+    }
+    """
+
+  'React: componentWillReceiveProps (np) { ... }':
+    'prefix': 'cwr'
+    'body': """
+    componentWillReceiveProps (nextProps) {
+      ${1}
+    }
+    """
+
+  'React: componentWillUnmount () { ... }':
+    'prefix': 'cwun'
+    'body': """
+    componentWillUnmount () {
+      ${1}
+    }
+    """
+
+  'React: componentWillUpdate (np, ns) { ... }':
+    'prefix': 'cwu'
+    'body': """
+    componentWillUpdate (nextProps, nextState) {
+      ${1}
+    }
+    """
+
+  'React: defaultProps { ... }':
+    'prefix': 'defprops'
+    'body': """
+    static defaultProps = {
+      ${1} : ${2}
+    }
+    """
+
+  'React: propTypes { ... }':
+    'prefix': 'pt'
+    'body': """
+    static propTypes = {
+      ${1} : React.PropTypes.${2:string}
+    }
+    """
+
+  'React: render () { return ... }':
+    'prefix': 'ren'
+    'body': """
+    render () {
+      return (
+        ${1}
+      );
+    }
+    """
+
+  'React: setState({ ... })':
+    'prefix': 'sst'
+    'body': """
+    this.setState({
+      ${1} : ${2}
+    });
+    """
+
+  'React: shouldComponentUpdate (np, ns) { ... }':
+    'prefix': 'scu'
+    'body': """
+    shouldComponentUpdate (nextProps, nextState) {
+      ${1}
+    }
+    """
+
+  'React: this.props.':
+    'prefix': 'props'
+    'body': """
+    this.props.${1}
+    """
+
+  'React: this.state.':
+    'prefix': 'state'
+    'body': """
+    this.state.${1}
+    """
+
+  'React: render(component, container, [callback])':
+    'prefix': 'rrc'
+    'body': """
+    React.render(${1:<$2 />}, ${3:document.body}${4:, ${5:callback}});
+    """
+
+########################
+# Jade
+########################
+'.source.jade':
+
+  # Scaffold
+  'Scaffold-Jade':
+    'prefix': 'scaffold'
+    'body': """
+    doctype html
+    html(lang='en')
+    head
+      meta(charset='utf-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1')
+      link(rel='author' content='David Zukowski' href='//zuko.me')
+    body
+      ${1}
+    """
+
+########################
+# HTML
+########################
+'.text.html':
+
+  # Scaffold
+  'Scaffold-HTML':
+    'prefix': 'scaffold'
+    'body': """
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="author" content="" href="//zuko.me" />
+    </head>
+    <body>
+      ${1}
+    </body>
+    </html>
+    """
+
+########################
+# Markdown
+########################
+'.source.gfm':
+
+  'TODO Item':
+    'prefix': 'do'
+    'body': """
+    * [ ] ${1}
+    """
+
+  'TODO Item (done)':
+    'prefix': 'did'
+    'body': """
+    * [x] ${1}
+    """
+
+  'Você':
+    'prefix': 'vc'
+    'body': """
+    você
+    """
