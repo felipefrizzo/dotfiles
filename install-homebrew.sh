@@ -52,7 +52,7 @@ brew cask install vmware-fusion
 brew cask install vagrant
 
 brew cask install atom
-brew cask install intellij-idea
+brew cask install intellij-idea-ce
 brew cask install pycharm
 brew cask install postamn
 
