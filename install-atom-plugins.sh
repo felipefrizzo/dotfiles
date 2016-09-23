@@ -6,8 +6,6 @@ apm install environment
 apm install linter
 
 apm install autocomplete-python
-apm install linter-python
-apm install linter-pep8
 apm install atom-django
 apm install django-templates
 
