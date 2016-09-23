@@ -25,6 +25,7 @@ brew install nvm
 brew install go
 brew install pyenv
 brew install pyenv-virtualenv
+brew install rbenv
 
 #brew install dockutil
 brew install dockutil
@@ -47,7 +48,6 @@ brew cask install slack
 brew cask install java
 brew install git-credential-manager
 
-brew cask install virtualbox
 brew cask install vmware-fusion
 brew cask install vagrant
 

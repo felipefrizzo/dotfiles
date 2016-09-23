@@ -28,12 +28,15 @@ export EDITOR='open -a Atom.app'
 export NVM_DIR=$HOME/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
+export GOPATH=$HOME/Documents/workspaces/go/
+export PATH=$PATH:$GOPATH/bin
+
 export PYENV_ROOT=/usr/local/var/pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-export GOPATH=$HOME/Documents/workspaces/go/
-export PATH=$PATH:$GOPATH/bin
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
