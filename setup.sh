@@ -22,7 +22,7 @@ cp .gitignore_global ~/
 
 echo ""
 echo "Software Update"
-softwareupdate -iva --verbose
+softwareupdate -ia --verbose
 
 echo ""
 echo "Setup app's on dock"
