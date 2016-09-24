@@ -40,6 +40,7 @@ brew cask install firefoxdeveloperedition
 brew cask install opera-developer
 
 brew cask install spotify
+brew cask install google-hangouts
 brew cask install the-unarchiver
 brew cask install vlc
 brew cask install skype
