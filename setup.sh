@@ -3,6 +3,11 @@ echo ""
 echo "Setup OsX"
 
 sh install-cli-tools.sh
+
+echo ""
+echo "Software Update"
+softwareupdate -ia --verbose
+
 sh install-homebrew.sh
 sh install-atom-plugins.sh
 sh install-external-softwares.sh
@@ -19,10 +24,6 @@ cp .bash_profile ~/
 cp .inputrc ~/
 cp .gitconfig ~/
 cp .gitignore_global ~/
-
-echo ""
-echo "Software Update"
-softwareupdate -ia --verbose
 
 echo ""
 echo "Setup app's on dock"
