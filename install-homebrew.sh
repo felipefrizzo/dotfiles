@@ -10,7 +10,7 @@ echo ""
 echo "Instaling applications from homebrew"
 
 #install homebrew-cask
-brew install caskroom/cask/brew-cask
+#brew install caskroom/cask/brew-cask
 
 #tap hombrew cask-versions and completions
 brew tap caskroom/versions
