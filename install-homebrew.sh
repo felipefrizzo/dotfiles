@@ -50,6 +50,7 @@ brew cask install java
 brew install git-credential-manager
 
 brew cask install vmware-fusion
+brew cask install virtualbox
 brew cask install vagrant
 
 brew cask install atom
