@@ -16,7 +16,6 @@ import subprocess
 import plistlib
 import getpass
 
-from Foundation import CFPreferencesAppSynchronize
 
 # =======================================
 # Standard Applications
@@ -228,7 +227,6 @@ def main(argv=None):
         addFolders()
 
         # Write all pending changes to permanent storage
-        CFPreferencesAppSynchronize('com.apple.dock')
         print "Done. You might want to restart Dock by running \"killall Dock\""
 
     except Usage, err:
