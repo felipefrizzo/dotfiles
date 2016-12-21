@@ -2,6 +2,8 @@
   "atom-ctags":
     autoBuildTagsWhenActive: true
   "autocomplete-go": {}
+  "autocomplete-python":
+    useKite: false
   autosave:
     enabled: true
   core:
@@ -12,9 +14,7 @@
       "atom-ctags"
       "dash"
       "go-rename"
-      "go-get"
       "mathjax-wrapper"
-      "react"
     ]
     excludeVcsIgnoredPaths: false
   dyndocker: {}
@@ -22,9 +22,9 @@
     fontSize: 13
     invisibles: {}
     preferredLineLength: 79
-    tabType: "soft"
     showIndentGuide: true
     tabLength: 4
+    tabType: "soft"
   "exception-reporting":
     userId: "beca608e-8581-bdfe-3bde-a1a9bd166fed"
   "file-icons": {}
@@ -36,6 +36,9 @@
     errorPanelHeight: 71
     gutterPosition: "Left"
     underlineIssues: false
+  "linter-python":
+    withPep8: true
+    withPylint: true
   react: {}
   tabs:
     addNewTabsAtEnd: true
