@@ -15,9 +15,7 @@ apm install go-config
 apm install go-get
 apm install go-oracle
 apm install go-plus
-apm install go-debug
 apm install gorename
-apm install godoc
 apm install gofmt
 apm install gometalinter-linter
 apm install navigator-godef
