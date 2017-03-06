@@ -39,3 +39,4 @@ apm install tab-numbers
 apm install file-icons
 apm install highlight-line
 apm install new-tab
+apm install hyperclick
