@@ -27,6 +27,12 @@ brew install pyenv
 brew install pyenv-virtualenv
 brew install rbenv
 
+brew install ansible
+brew install awscli
+brew install heroku
+brew install terraform
+brew install tree
+
 #brew install dockutil
 brew install dockutil
 
@@ -44,7 +50,7 @@ brew cask install google-hangouts
 brew cask install the-unarchiver
 brew cask install vlc
 brew cask install skype
-brew cask install slack
+brew cask install slack-beta
 
 brew cask install java
 brew install git-credential-manager
@@ -62,7 +68,7 @@ brew cask install sourcetree
 brew cask install diffmerge
 
 brew cask install mongochef
-brew cask install pgadmin3
+brew cask install pgadmin4
 brew cask install mysqlworkbench
 
 IS_LAPTOP=`/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book"`
