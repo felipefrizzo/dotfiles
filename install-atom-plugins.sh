@@ -11,15 +11,10 @@ apm install django-templates
 
 apm install autocomplete-go
 apm install builder-go
-apm install go-config
-apm install go-get
 apm install go-oracle
 apm install go-plus
-apm install gorename
-apm install gofmt
 apm install gometalinter-linter
 apm install navigator-godef
-apm install tester-go
 
 apm install autocomplete-ruby
 apm install linter-ruby
