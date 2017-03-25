@@ -12,12 +12,11 @@ apm install django-templates
 apm install autocomplete-go
 apm install builder-go
 apm install go-oracle
+apm install go-debug
 apm install go-plus
+apm install go-signature-statusbar
 apm install gometalinter-linter
 apm install navigator-godef
-
-apm install autocomplete-ruby
-apm install linter-ruby
 
 apm install language-babel
 apm install language-docker
