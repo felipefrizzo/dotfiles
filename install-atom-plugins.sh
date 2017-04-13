@@ -22,7 +22,7 @@ apm install language-javascript-jsx
 apm install es6-javascript
 apm install angularjs
 apm install angularjs-styleguide-snippets
-
+apm install autocomplete-modules
 
 apm install markdown-preview-plus
 apm install markdown-writer
