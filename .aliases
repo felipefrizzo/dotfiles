@@ -1,0 +1,21 @@
+# .aliases
+
+# Files
+alias ll='ls -lha'
+alias ls='ls -a'
+alias cd..='cd ..'
+alias home='cd ~'
+alias arquivos='cd /Volumes/Arquivos'
+alias workspace='cd /Volumes/Arquivos/workspaces/'
+
+# Git
+alias gcma='git commit -am'
+alias ga='git add .'
+alias gp='git push'
+alias gr='git rebase'
+
+# Docker
+alias dc='docker-compose'
+alias dcr='docker-compose run'
+
+alias st='open -a SourceTree'

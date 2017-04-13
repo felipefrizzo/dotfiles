@@ -37,7 +37,6 @@ brew install tree
 brew install dockutil
 
 #install hombrew cask formulas
-brew cask install utorrent
 brew cask install dropbox
 brew cask install google-drive
 
@@ -62,18 +61,17 @@ brew cask install vagrant
 brew cask install atom
 brew cask install intellij-idea-ce
 brew cask install pycharm
-brew cask install postamn
 
 brew cask install sourcetree
 brew cask install diffmerge
 
-brew cask install mongochef
+brew cask install studio-3t
 brew cask install pgadmin4
 brew cask install mysqlworkbench
 
 IS_LAPTOP=`/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book"`
 if [[ "$IS_LAPTOP" != "" ]]; then
-  brew cask intall coconutbattery
+  brew cask install coconutbattery
 fi
 
 #install homebrew completions

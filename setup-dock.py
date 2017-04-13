@@ -68,12 +68,12 @@ thirdPartyApps = [
     "forced": True
     },
     {
-    "path": "/Applications/MongoChef.app",
+    "path": "/Applications/Studio 3T.app",
     "args": [ "--after", "Terminal" ],
     "forced": True
     },
     {
-    "path": "/Applications/pgAdmin3.app",
+    "path": "/Applications/pgAdmin 4.app",
     "args": [ "--after", "Terminal" ],
     "forced": True
     },

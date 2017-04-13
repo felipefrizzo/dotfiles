@@ -1,5 +1,6 @@
 # .bash_profile
 source $HOME/.bash_prompt
+source $HOME/.aliases
 
 # History Tweaks
 HISTCONTROL=ignoredups:ignorespace
@@ -28,30 +29,18 @@ export EDITOR='open -a Atom.app'
 export NVM_DIR=$HOME/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-export GOPATH=$HOME/Documents/workspaces/go/
+export GOPATH=$HOME/Volumes/Arquivos/workspaces/go/
 export PATH=$PATH:$GOPATH/bin
 
-export PYENV_ROOT=/usr/local/var/pyenv
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PATH:$PYENV/bin
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$PATH:$HOME/.rbenv/bin"
 eval "$(rbenv init -)"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
-
-#alias
-alias ll='ls -la'
-alias ls='ls -a'
-alias cd..='cd ..'
-alias home='cd ~'
-alias arquivos='cd /Volumes/Arquivos'
-alias workspace='cd /Volumes/Arquivos/workspaces/'
-
-alias gcma='git commit -am'
-alias ga='git add .'
-alias gp='git push'
-alias gr='git rebase'
 
 # Run source on bash_completion at the end of file to make sure process all alias
 source $HOME/.bash_completion
