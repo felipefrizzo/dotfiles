@@ -112,6 +112,7 @@
 ########################
 # React
 ########################
+'.source.js':
   'React: component':
     'prefix' : 'rcm'
     'body' : """
@@ -129,7 +130,7 @@
   'React: export default component':
     'prefix' : 'expdrcm'
     'body' : """
-    export default class ${1} extends React.Component {
+    export default class ${1} extends Component {
       constructor () {
         super();
       }
@@ -246,6 +247,12 @@
     'prefix': 'rrc'
     'body': """
     React.render(${1:<$2 />}, ${3:document.body}${4:, ${5:callback}});
+    """
+
+  'React: export default class':
+    'prefix': 'expdef'
+    'body': """
+    export default ${1};
     """
 
 ########################
