@@ -21,20 +21,29 @@ export GIT_PS1_SHOWSTASHSTATE=true
 
 export EDITOR='open -a Atom.app'
 
-export NVM_DIR=$HOME/.nvm
+if [ -d $HOME/.nvm ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+fi
 
-export GOPATH=$HOME/Volumes/Arquivos/workspaces/go/
+export GOPATH=$HOME/workspaces/go/
 export PATH=$PATH:$GOPATH/bin
 
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PATH:$PYENV/bin
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if [ -d $HOME/.pyenv ]; then
+  export PATH=$PATH:$HOME/.pyenv/bin
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
-export PATH="$PATH:$HOME/.rbenv/bin"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+if [ -d $HOME/.rbenv ]; then
+  export PATH="$PATH:$HOME/.rbenv/bin"
+  export PATH="$PATH:$HOME/.rbenv/plugins/ruby-build/bin"
+  eval "$(rbenv init -)"
+elif [ -d $HOME/.rvm ]; then
+  export PATH="$PATH:$HOME/.rvm/bin"
+fi
 
+export PATH=$PATH:/home/felipefrizzo/terraform
 export JAVA_HOME="/usr/lib/jvm/java-9-oracle"
 
 # Run source on bash_completion at the end of file to make sure process all alias
