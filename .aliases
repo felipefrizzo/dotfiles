@@ -1,12 +1,16 @@
 # .aliases
 
+eval $(thefuck --alias)
+
+# Apt
+alias apt='sudo apt'
+
 # Files
 alias ll='ls -lha'
 alias ls='ls -a'
 alias cd..='cd ..'
 alias home='cd ~'
-alias arquivos='cd /Volumes/Arquivos'
-alias workspace='cd /Volumes/Arquivos/workspaces/'
+alias workspace='cd $HOME/workspaces/'
 
 # Git
 alias gcma='git commit -am'
@@ -17,5 +21,5 @@ alias gr='git rebase'
 # Docker
 alias dc='docker-compose'
 alias dcr='docker-compose run'
+alias docker_rmi='docker rmi -f $(docker images -f "dangling=true" -q)'
 
-alias st='open -a SourceTree'
