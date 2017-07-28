@@ -11,32 +11,34 @@ sudo sh install-apt.sh
 echo ""
 echo "Setup Developer Tools"
 echo ""
-sudo sh install-java.sh
-sudo sh install-golang.sh
-sudo sh install-pyenv.sh
-sudo sh install-nvm.sh
-sudo sh install-rbenv-rvm.sh
-sudo sh install-terraform.sh
+sh install-java.sh
+sh install-golang.sh
+sh install-pyenv.sh
+sh install-nvm.sh
+sh install-rbenv-rvm.sh
+sh install-terraform.sh
+sh install-virtualbox.sh
+sh install-vagrant.sh
 
 echo ""
 echo "Setup Text Editors"
 echo ""
-sudo sh install-atom.sh
-sudo sh install-visual-studio.sh
-sudo sh install-sublime.sh
+sh install-atom.sh
+sh install-visual-studio.sh
+sh install-sublime.sh
 
 echo ""
 echo "Setup Browsers"
 echo ""
-sudo sh install-chrome.sh
-sudo sh install-opera.sh
+sh install-chrome.sh
+sh install-opera.sh
 
 echo ""
 echo "Setup Utility"
 echo ""
-sudo sh install-spotify.sh
-sudo sh install-skype-beta.sh
-sudo sh install-gitkraken.sh
+sh install-spotify.sh
+sh install-skype-beta.sh
+sh install-gitkraken.sh
 
 pip install --upgrade pip
 sh install-aws.sh
