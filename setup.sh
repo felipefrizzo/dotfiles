@@ -6,6 +6,8 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt autoremove -y
 
+sudo apt-get -f install -y
+
 sudo sh install-apt.sh
 
 echo ""
