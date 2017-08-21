@@ -28,6 +28,8 @@ echo ""
 sh install-atom.sh
 sh install-visual-studio.sh
 sh install-sublime.sh
+sh install-rubymine.sh
+sh install-pycharm.sh
 
 echo ""
 echo "Setup Browsers"
