@@ -44,6 +44,12 @@ sh install-spotify.sh
 sh install-skype-beta.sh
 sh install-gitkraken.sh
 
+echo ""
+echo "Setup pyenv"
+echo ""
+pyenv install 3.6.0
+pyenv global 3.6.0
+
 pip install --upgrade pip
 sh install-aws.sh
 
@@ -65,6 +71,3 @@ sudo sh install-atom-plugins.sh
 sudo sh install-docker.sh
 
 source $HOME/.bashrc
-
-pyenv install 3.5.0
-pyenv global 3.5.0
