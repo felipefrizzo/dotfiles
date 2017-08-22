@@ -1,8 +1,6 @@
 [user]
 	name = Felipe Frizzo
 	email = felipefrizzo@gmail.com
-[credential]
-	helper = osxkeychain
 [color]
 	diff = auto
   status = auto
@@ -12,7 +10,7 @@
 	summary = true
 [core]
 	excludesfile = $HOME/.gitignore_global
-	editor = open -a /Atom.app
+	editor = atom --wait
 [push]
 	default = current
 [alias]
