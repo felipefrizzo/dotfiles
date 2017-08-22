@@ -30,6 +30,7 @@ sh install-visual-studio.sh
 sh install-sublime.sh
 sh install-rubymine.sh
 sh install-pycharm.sh
+sh install-android-studio.sh
 
 echo ""
 echo "Setup Browsers"
