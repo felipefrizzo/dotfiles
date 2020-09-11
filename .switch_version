@@ -1,0 +1,35 @@
+#!/bin/zsh 
+
+# Terraform version
+load-tfswitch() {
+  local tfswitchrc_path=".tfswitchrc"
+
+  if [ -f "$tfswitchrc_path" ]; then
+    tfswitch
+  fi
+}
+add-zsh-hook chpwd load-tfswitch
+load-tfswitch
+
+# Terragrunt version
+load-tgswitch() {
+  local tgswitchrc_path=".tgswitchrc"
+
+  if [ -f "$tgswitchrc_path" ]; then
+    tgswitch
+  fi
+}
+add-zsh-hook chpwd load-tgswitch
+load-tgswitch
+
+# NVM version
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path=".nvmrc"
+
+  if [[ -f "$nvmrc_path" && -r "$nvmrc_path" ]]; then
+    nvm use
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
