@@ -2,7 +2,7 @@ tap 'homebrew/cask-drivers'
 tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 
-tap 'warrensbox/tap/'
+tap 'warrensbox/tap'
 
 # Install homebrew formulas
 
