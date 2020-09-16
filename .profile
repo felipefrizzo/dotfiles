@@ -25,4 +25,5 @@ export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 . "$HOME/.aliases"
-. "$HOME/.switch_versions"
+. "$HOME/.switch_version"
+eval "$(jump shell)"
