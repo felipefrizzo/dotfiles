@@ -22,6 +22,7 @@ cp .vimrc ~/
 cp .switch_version ~/
 
 cp iterm/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+cp vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
 printf "\nSetup apps on docker..."
 python setup-dock.py
