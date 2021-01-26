@@ -36,15 +36,22 @@ brew 'yarn'
 
 brew 'ansible'
 brew 'awscli'
+brew 'multipass'
 brew 'packer'
 brew 'tfswitch'
 brew 'tgswitch'
+
+brew 'helm'
+brew 'k3d'
+brew 'kops'
+brew 'kubectx'
+brew 'kubernetes-cli'
 
 brew 'zsh-autosuggestions'
 brew 'zsh-completion'
 brew 'zsh-syntax-highlighting'
 
-cask 'java'
+brew 'java'
 brew 'git-credential-manager'
 
 brew 'mas'
@@ -55,7 +62,7 @@ cask 'authy'
 cask 'lastpass'
 
 cask 'istat-menus'
-cask 'macmediakeyforwarder'
+cask 'beardedspice'
 cask 'shiftit'
 
 cask 'bluejeans'
@@ -98,3 +105,4 @@ cask 'font-source-serif-pro'
 
 mas "harvest", id: 506189836
 mas "numbers", id: 409203825
+mas "grammarly", id: 1462114288
