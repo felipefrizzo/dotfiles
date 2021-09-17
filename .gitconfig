@@ -5,9 +5,9 @@
 	helper = osxkeychain
 [color]
 	diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
+	status = auto
+	branch = auto
+	interactive = auto
 [merge]
 	summary = true
 [core]
@@ -27,6 +27,7 @@
 	pl=pull
 	branches=branch -a
 	remotes=remote -v
+	prunetags = fetch --prune origin '+refs/tags/*:refs/tags/*'
 [commit]
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = false
@@ -38,3 +39,9 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[includeIf "gitdir:~/Documents/workspaces/company/"]
+	path = .gitconfig-company
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
