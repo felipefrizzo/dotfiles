@@ -23,6 +23,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  1password
   ansible
   aws
   branch
@@ -30,14 +31,15 @@ plugins=(
   bundler
   celery
   cp
-  django
   docker
   docker-compose
+  dotenv
   gcloud
   gem
   git
   git-extras
   git-flow
+  gitignore
   golang
   helm
   heroku
@@ -47,20 +49,22 @@ plugins=(
   jira
   kops
   kubectl
+  macos
+  multipass
   minikube
+  nmap
   node
   npm
   nvm
-  osx
   pip
   pipenv
   postgres
-  pyenv
   python
   rake
   rbenv
   redis-cli
   ruby
+  systemadmin
   terraform
   vagrant
   vault

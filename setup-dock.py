@@ -32,7 +32,17 @@ appleApps = [
 # =======================================
 thirdPartyApps = [
     {
+        "path": "/Applications/Microsoft Outlook.app",
+        "args": [ "--before", "Terminal" ],
+        "forced": True
+    },
+    {
         "path": "/Applications/LastPass.app",
+        "args": [ "--before", "Terminal" ],
+        "forced": True
+    },
+    {
+        "path": "/Applications/1Password 7.app",
         "args": [ "--before", "Terminal" ],
         "forced": True
     },

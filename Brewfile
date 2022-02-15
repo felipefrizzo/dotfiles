@@ -58,24 +58,31 @@ brew 'mas'
 
 # Install cask applications
 
+cask 'appcleaner'
+
+cask '1password'
+cask '1password-cli'
 cask 'authy'
 cask 'lastpass'
 
 cask 'istat-menus'
 cask 'beardedspice'
 cask 'shiftit'
+cask 'rectangle'
 
 cask 'bluejeans'
 cask 'discord'
 cask 'google-hangouts'
 cask 'keybase'
 cask 'skype'
-cask 'slack'
+cask 'slack-beta'
 cask 'zoomus'
+cask 'grammarly'
 
 cask 'spotify'
 cask 'vlc'
 
+cask 'lens'
 cask 'docker'
 cask 'iterm2'
 cask 'ngrok'
@@ -86,13 +93,22 @@ cask 'brave-browser'
 cask 'firefox-developer-edition'
 cask 'google-chrome-canary'
 cask 'opera-developer'
+cask 'tor-browser'
 
 cask 'mysqlworkbench'
 cask 'pgadmin4'
 
+cask 'microsoft-auto-update'
+cask 'microsoft-office'
+cask 'microsoft-teams'
+
 cask 'diffmerge'
 cask 'sourcetree'
 cask 'the-unarchiver'
+
+cask 'ledger-live'
+cask 'logitech-g-hub'
+cask 'tunnelblick'
 
 # Install cask fonts
 

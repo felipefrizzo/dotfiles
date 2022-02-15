@@ -35,4 +35,4 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 # Set Input preferences
 # ==============================================
 # Disable auto-correct
- defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false

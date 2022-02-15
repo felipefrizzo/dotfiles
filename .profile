@@ -27,3 +27,5 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 . "$HOME/.aliases"
 . "$HOME/.switch_version"
 eval "$(jump shell)"
+
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES

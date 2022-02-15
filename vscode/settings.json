@@ -7,13 +7,14 @@
     "editor.renderWhitespace": "none",
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.wordWrapColumn": 79,
+    "editor.formatOnSave": true,
     "files.associations": {
         "Dockerfile*": "dockerfile",
-        "*.hcl": "terraform"
+        "*.hcl": "terraform",
+        "*.yml": "yaml"
     },
     "editor.formatOnPaste": true,
     "editor.minimap.enabled": false,
-    "editor.renderIndentGuides": false,
     "editor.scrollBeyondLastLine": false,
     "editor.wrappingIndent": "indent",
     "cSpell.ignoreWords": [
@@ -36,14 +37,15 @@
         "sqlite",
         "sqlite3",
         "systemd",
-        "twilio"
+        "twilio",
+        "lerna"
     ],
     "terminal.integrated.fontFamily": "MesloLGS NF",
     "terraform.languageServer": {
         "external": true,
         "args": [
             "serve"
-        ],
+        ]
     },
     "python.languageServer": "Microsoft",
     "atomKeymap.promptV3Features": true,
@@ -52,4 +54,24 @@
     "extensions.ignoreRecommendations": true,
     "go.vetOnSave": "off",
     "go.useLanguageServer": true,
+    "search.followSymlinks": false,
+    "workbench.activityBar.visible": true,
+    "cSpell.language": "en,pt_BR",
+    "cSpell.userWords": [
+        "alertmanager",
+        "cloudalchemy",
+        "cnpj",
+        "endraw",
+        "mongodb",
+        "postgres",
+        "pydantic",
+        "representates",
+        "starlette"
+    ],
+    "[go]": {
+        "editor.tabSize": 4
+    },
+    "[python]": {
+        "editor.tabSize": 4
+    }
 }
