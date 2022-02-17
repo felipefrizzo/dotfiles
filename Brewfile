@@ -72,7 +72,6 @@ cask 'rectangle'
 
 cask 'bluejeans'
 cask 'discord'
-cask 'google-hangouts'
 cask 'keybase'
 cask 'skype'
 cask 'slack-beta'

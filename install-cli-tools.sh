@@ -1,12 +1,14 @@
 echo ""
 echo "Installing latest CLI Tools…"
 
-cmd_line_tool_temp_file="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
-touch "$cmd_line_tool_temp_file"
+xcode-select --install
 
-cmd_line_tools=$(softwareupdate -l | awk '/\*\ Command Line Tools/ { $1=$1;print }' | tail -1 | sed 's/^[[ \t]]*//;s/[[ \t]]*$//;s/*//' | cut -c 2-)
-softwareupdate -i "$cmd_line_tools" --verbose
+echo ""
+echo "Software Update..."
+softwareupdate -ia --verbose
 
-if [[ -f "$cmd_line_tool_temp_file" ]]; then
-  rm  -rf "$cmd_line_tool_temp_file"
-fi
+if [[ $(uname -m) == 'arm64' ]]; then
+  echo ""
+  echo "Installing Roseta..."
+  sudo softwareupdate --install-rosetta
+fi 

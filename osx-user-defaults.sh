@@ -8,13 +8,13 @@ echo "Set OsX user defaults"
 IS_LAPTOP=`/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book"`
 if [[ "$IS_LAPTOP" != "" ]]; then
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-  defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
   # Tap with two fingers to emulate right click
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool false
   # Secondary click
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-  defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-  defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool false
+  defaults -currentHost write -g com.apple.trackpad.trackpadCornerClickBehavior -int 1
+  defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool false
 fi
 
 defaults write com.apple.dock showMissionControlGestureEnabled -bool true
@@ -41,7 +41,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict OpenWith -bool true Pr
 defaults write com.apple.finder ShowStatusBar -bool true
 
 # Show all filename extensions
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write -g AppleShowAllExtensions -bool true
 
 # Show all files
 defaults write com.apple.finder AppleShowAllFiles -bool true
@@ -96,7 +96,7 @@ defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool 
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
 # Add a context menu item for showing the Web Inspector in web views
-defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+defaults write -g WebKitDeveloperExtras -bool true
 
 # Prevent Safari from opening ‘safe’ files automatically after downloading
  defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
@@ -116,7 +116,7 @@ pathToTerminalPrefs="${HOME}/Library/Preferences/com.apple.Terminal.plist"
 # Sound
 # ==============================================
 # Disable user interface sound efects
-defaults write NSGlobalDomain "com.apple.sound.beep.feedback" -bool true
+defaults write -g "com.apple.sound.beep.feedback" -bool true
 defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -bool false
 
 # ==============================================
