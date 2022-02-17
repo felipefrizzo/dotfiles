@@ -1,3 +1,5 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export EDITOR="code"
 
 export GOPATH="$HOME/Documents/workspaces/go/"
@@ -16,9 +18,6 @@ if type brew &>/dev/null; then
   export PATH="$(brew --prefix sqlite3)/bin:$PATH"
 
   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-
-  . "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  . "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
