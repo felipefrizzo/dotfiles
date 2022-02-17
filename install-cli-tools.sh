@@ -1,6 +1,5 @@
 echo ""
 echo "Installing latest CLI Tools…"
-
 xcode-select --install
 
 echo ""

@@ -1,5 +1,7 @@
 #!/bin/zsh 
 
+autoload -U add-zsh-hook
+
 # Terraform version
 load-tfswitch() {
   local tfswitchrc_path=".tfswitchrc"
@@ -23,7 +25,6 @@ add-zsh-hook chpwd load-tgswitch
 load-tgswitch
 
 # NVM version
-autoload -U add-zsh-hook
 load-nvmrc() {
   local nvmrc_path=".nvmrc"
 

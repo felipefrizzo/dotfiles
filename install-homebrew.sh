@@ -8,8 +8,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 printf "\nInstalling applications from homebrew\n"
-
-brew tap homebrew/bundle
 brew bundle
 
 printf "\n Cleanup brew formulas\n"

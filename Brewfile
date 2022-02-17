@@ -1,6 +1,10 @@
-tap 'homebrew/cask-drivers'
-tap 'homebrew/cask-fonts'
-tap 'homebrew/cask-versions'
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-drivers"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "homebrew/services"
 
 tap 'warrensbox/tap'
 
@@ -36,7 +40,6 @@ brew 'yarn'
 
 brew 'ansible'
 brew 'awscli'
-brew 'multipass'
 brew 'packer'
 brew 'tfswitch'
 brew 'tgswitch'
@@ -47,9 +50,10 @@ brew 'kops'
 brew 'kubectx'
 brew 'kubernetes-cli'
 
-brew 'zsh-autosuggestions'
-brew 'zsh-completion'
-brew 'zsh-syntax-highlighting'
+brew "zsh"
+brew "zsh-autosuggestions"
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
 
 brew 'java'
 brew 'git-credential-manager'
@@ -75,7 +79,7 @@ cask 'discord'
 cask 'keybase'
 cask 'skype'
 cask 'slack-beta'
-cask 'zoomus'
+cask 'zoom'
 cask 'grammarly'
 
 cask 'spotify'
@@ -108,13 +112,6 @@ cask 'the-unarchiver'
 cask 'ledger-live'
 cask 'logitech-g-hub'
 cask 'tunnelblick'
-
-# Install cask fonts
-
-cask 'font-meslo-for-powerline'
-cask 'font-source-code-pro'
-cask 'font-source-sans-pro'
-cask 'font-source-serif-pro'
 
 # Install Mac AppStore applications
 
