@@ -18,6 +18,10 @@ if type brew &>/dev/null; then
   export PATH="$(brew --prefix sqlite3)/bin:$PATH"
 
   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+  source $(brew --prefix)/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source $(brew --prefix)/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 fi
 
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"

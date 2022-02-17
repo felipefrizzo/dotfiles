@@ -7,6 +7,7 @@ tap "homebrew/core"
 tap "homebrew/services"
 
 tap 'warrensbox/tap'
+tap "romkatv/powerlevel10k"
 
 # Install homebrew formulas
 
@@ -41,8 +42,6 @@ brew 'yarn'
 brew 'ansible'
 brew 'awscli'
 brew 'packer'
-brew 'tfswitch'
-brew 'tgswitch'
 
 brew 'helm'
 brew 'k3d'
@@ -112,6 +111,10 @@ cask 'the-unarchiver'
 cask 'ledger-live'
 cask 'logitech-g-hub'
 cask 'tunnelblick'
+
+brew "romkatv/powerlevel10k/powerlevel10k"
+brew "warrensbox/tap/tfswitch"
+brew "warrensbox/tap/tgswitch"
 
 # Install Mac AppStore applications
 
