@@ -32,3 +32,4 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 eval "$(jump shell)"
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export GODEBUG=asyncpreemptoff=1

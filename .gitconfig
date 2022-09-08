@@ -32,10 +32,10 @@
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = false
 [diff]
-	renames = copies	
+	renames = copies
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true

@@ -1,77 +1,96 @@
 {
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "workbench.iconTheme": "vscode-icons",
-    "files.autoSave": "onFocusChange",
-    "editor.tabSize": 2,
-    "editor.renderWhitespace": "none",
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.wordWrapColumn": 79,
+    "atomKeymap.promptV3Features": true,
+    "editor.accessibilitySupport": "off",
+    "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.renderWhitespace": "none",
+    "editor.scrollBeyondLastLine": false,
+    "editor.tabSize": 2,
+    "editor.wordWrapColumn": 120,
+    "editor.wrappingIndent": "indent",
+    "explorer.autoReveal": false,
+    "files.autoSave": "onFocusChange",
     "files.associations": {
         "Dockerfile*": "dockerfile",
         "*.hcl": "terraform",
+        "*.nomad": "terraform",
         "*.yml": "yaml"
     },
-    "editor.formatOnPaste": true,
-    "editor.minimap.enabled": false,
-    "editor.scrollBeyondLastLine": false,
-    "editor.wrappingIndent": "indent",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "search.followSymlinks": false,
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "workbench.activityBar.visible": true,
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.enableExperiments": false,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.startupEditor": "newUntitledFile",
+    "[go.mod]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "[go]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.suggest.snippetsPreventQuickSuggestions": false
+    },
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true
+    },
+    "[terraform-vars]": {
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.formatOnSave": true
+    },
+    "[terraform]": {
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.formatOnSave": true
+    },
+    "cSpell.language": "en,pt_BR",
     "cSpell.ignoreWords": [
+        "alertmanager",
         "ansible",
         "autoremove",
         "boto",
         "bson",
+        "cloudalchemy",
+        "cloudctl",
+        "cnpj",
         "correios",
         "dind",
-        "documentdb",
+        "endraw",
         "felipefrizzo",
+        "ffrizzo",
         "frizzo",
         "gitlab",
         "grafana",
+        "hashicorp",
+        "Infof",
         "isotime",
         "lambci",
+        "lerna",
         "mkdir",
-        "pipefail",
-        "representate",
-        "sqlite",
-        "sqlite3",
-        "systemd",
-        "twilio",
-        "lerna"
-    ],
-    "terminal.integrated.fontFamily": "MesloLGS NF",
-    "terraform.languageServer": {
-        "external": true,
-        "args": [
-            "serve"
-        ]
-    },
-    "python.languageServer": "Microsoft",
-    "atomKeymap.promptV3Features": true,
-    "workbench.startupEditor": "newUntitledFile",
-    "explorer.autoReveal": false,
-    "extensions.ignoreRecommendations": true,
-    "go.vetOnSave": "off",
-    "go.useLanguageServer": true,
-    "search.followSymlinks": false,
-    "workbench.activityBar.visible": true,
-    "cSpell.language": "en,pt_BR",
-    "cSpell.userWords": [
-        "alertmanager",
-        "cloudalchemy",
-        "cnpj",
-        "endraw",
         "mongodb",
+        "pipefail",
         "postgres",
         "pydantic",
+        "pypi",
+        "representate",
         "representates",
-        "starlette"
-    ],
-    "[go]": {
-        "editor.tabSize": 4
-    },
-    "[python]": {
-        "editor.tabSize": 4
-    }
+        "sqlite",
+        "sqlite3",
+        "startlette",
+        "systemd",
+        "tfstate",
+        "twilio"
+    ]
 }

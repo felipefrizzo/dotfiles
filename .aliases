@@ -5,7 +5,7 @@ alias cd..='cd ..'
 alias home='cd ~'
 alias ll='ls -lha'
 alias ls='ls -a'
-alias workspace='cd ~/Documents/workspaces/'
+alias workspace='cd ~/workspaces/'
 
 # Git
 alias ga='git add .'
@@ -26,7 +26,7 @@ alias dcud='docker-compose up -d'
 alias docker_rmi='docker rmi -f $(docker images -f "dangling=true" -q)'
 
 # SSH
-alias ssha='ssh-add -K'
+alias ssha='ssh-add --apple-use-keychain'
 
 alias st='open -a SourceTree'
 

@@ -70,3 +70,7 @@ xcuserdata
 *.moved-aside
 DerivedData
 *.xcuserstate
+
+# Terraform
+*.tfvars
+.infracost
