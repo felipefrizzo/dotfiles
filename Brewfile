@@ -63,11 +63,6 @@ brew 'mas'
 
 cask 'appcleaner'
 
-cask '1password'
-cask '1password-cli'
-cask 'authy'
-cask 'lastpass'
-
 cask 'istat-menus'
 cask 'beardedspice'
 cask 'shiftit'
@@ -77,7 +72,7 @@ cask 'bluejeans'
 cask 'discord'
 cask 'keybase'
 cask 'skype'
-cask 'slack-beta'
+cask 'slack'
 cask 'zoom'
 cask 'grammarly'
 
@@ -108,9 +103,7 @@ cask 'diffmerge'
 cask 'sourcetree'
 cask 'the-unarchiver'
 
-cask 'ledger-live'
 cask 'logitech-g-hub'
-cask 'tunnelblick'
 
 brew "romkatv/powerlevel10k/powerlevel10k"
 brew "warrensbox/tap/tfswitch"

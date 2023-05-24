@@ -9,20 +9,10 @@ sh install-vscode-plugins.sh
 sudo sh osx-system-defaults.sh
 sh osx-user-defaults.sh
 
-cp .aliases ~/
-cp .gitconfig ~/
-cp .gitignore_global ~/
-cp .inputrc ~/
-cp .p10k.zsh ~/
-cp .zprofile ~/
-cp .vimrc ~/
-cp .switch_version ~/
-
-cp iterm/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
-cp vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
-
 mkdir -p ~/.nvm
 mkdir -p ~/.pyenv
+
+sudo ln -sf $(brew --prefix bash)/bin/bash /usr/local/bin/bash
 
 echo "\nInstalling Fonts"
 open -a Font\ Book ./fonts/*.ttf
@@ -32,4 +22,4 @@ python setup-dock.py
 killall Dock
 
 sh install-zsh.sh
-cp .zshrc ~/
+yes | cp -a ./home/ ~/
