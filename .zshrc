@@ -23,6 +23,7 @@ plugins=(
   brew
   bundler
   celery
+  common-aliases
   cp
   docker
   docker-compose
@@ -43,10 +44,11 @@ plugins=(
   kops
   kubectl
   macos
-  multipass
   minikube
+  multipass
   nmap
   node
+  nomad
   npm
   nvm
   pip

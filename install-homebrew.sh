@@ -11,4 +11,4 @@ printf "\nInstalling applications from homebrew\n"
 brew bundle
 
 printf "\n Cleanup brew formulas\n"
-brew cleanup
+brew cleanup --prune=all

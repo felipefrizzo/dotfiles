@@ -1,33 +1,5 @@
 # Aliases
 
-# Files
-alias cd..='cd ..'
-alias home='cd ~'
-alias ll='ls -lha'
-alias ls='ls -a'
-alias workspace='cd ~/workspaces/'
-
-# Git
-alias ga='git add .'
-alias gcma='git commit -am'
-alias gp='git push'
-alias gr='git rebase'
-
-# Docker
-alias dc='docker-compose'
-alias dcd='docker-compose down'
-alias dce='docker-compose exec'
-alias dckrm='docker-compose kill; docker-compose rm'
-alias dcl='docker-compose logs'
-alias dcps='docker-compose ps'
-alias dcr='docker-compose run'
-alias dcu='docker-compose up'
-alias dcud='docker-compose up -d'
-alias docker_rmi='docker rmi -f $(docker images -f "dangling=true" -q)'
-
-# SSH
-alias ssha='ssh-add --apple-use-keychain'
-
 alias st='open -a SourceTree'
 
 # IP Addresses
