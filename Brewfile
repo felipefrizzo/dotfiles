@@ -25,6 +25,7 @@ brew 'upx'
 brew 'wget'
 brew 'yamllint'
 brew 'yq'
+brew 'bat'
 
 brew 'htop'
 brew 'nmap'
@@ -38,6 +39,8 @@ brew 'pyenv'
 brew 'pyenv-virtualenv'
 brew 'rbenv'
 brew 'yarn'
+brew 'zig'
+brew 'rustup-init'
 
 brew 'ansible'
 brew 'awscli'
@@ -104,13 +107,58 @@ cask 'sourcetree'
 cask 'the-unarchiver'
 
 cask 'logitech-g-hub'
+cask "logi-options-plus"
 
 brew "romkatv/powerlevel10k/powerlevel10k"
 brew "warrensbox/tap/tfswitch"
 brew "warrensbox/tap/tgswitch"
+brew "golangci/tap/golangci-lint"
+brew "goreleaser/tap/goreleaser"
+brew "heroku/brew/heroku"
 
 # Install Mac AppStore applications
 
-mas "harvest", id: 506189836
-mas "numbers", id: 409203825
-mas "grammarly", id: 1462114288
+# mas "harvest", id: 506189836
+mas "Numbers", id: 409203825
+mas "Grammarly for Safari", id: 1462114288
+mas "WhatsApp", id: 1147396723
+
+# Install vscode extensions
+vscode "aaron-bond.better-comments"
+vscode "codezombiech.gitignore"
+vscode "DavidAnson.vscode-markdownlint"
+vscode "dbaeumer.vscode-eslint"
+vscode "donjayamanne.githistory"
+vscode "eamodio.gitlens"
+vscode "GitHub.copilot"
+vscode "GitHub.copilot-chat"
+vscode "github.vscode-github-actions"
+vscode "GitLab.gitlab-workflow"
+vscode "golang.go"
+vscode "hashicorp.hcl"
+vscode "hashicorp.terraform"
+vscode "kuscamara.remove-unused-imports"
+vscode "mechatroner.rainbow-csv"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
+vscode "ms-python.isort"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-toolsai.jupyter"
+vscode "ms-toolsai.jupyter-keymap"
+vscode "ms-toolsai.jupyter-renderers"
+vscode "ms-toolsai.vscode-jupyter-cell-tags"
+vscode "ms-toolsai.vscode-jupyter-slideshow"
+vscode "ms-vscode.atom-keybindings"
+vscode "ms-vscode.makefile-tools"
+vscode "peterj.proto"
+vscode "rangav.vscode-thunder-client"
+vscode "redhat.vscode-yaml"
+vscode "sleistner.vscode-fileutils"
+vscode "streetsidesoftware.code-spell-checker"
+vscode "streetsidesoftware.code-spell-checker-portuguese-brazilian"
+vscode "usernamehw.errorlens"
+vscode "VisualStudioExptTeam.intellicode-api-usage-examples"
+vscode "VisualStudioExptTeam.vscodeintellicode"
+vscode "vscode-icons-team.vscode-icons"
+vscode "ziglang.vscode-zig"
