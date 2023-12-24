@@ -6,12 +6,15 @@ tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
 
-tap 'warrensbox/tap'
+tap "golangci/tap"
+tap "goreleaser/tap"
+tap "heroku/brew"
+
+tap "warrensbox/tap"
 tap "romkatv/powerlevel10k"
 
 # Install homebrew formulas
 
-brew 'dockutil'
 brew 'dos2unix'
 brew 'fd'
 brew 'gettext'
@@ -68,7 +71,6 @@ cask 'appcleaner'
 
 cask 'istat-menus'
 cask 'beardedspice'
-cask 'shiftit'
 cask 'rectangle'
 
 cask 'bluejeans'
@@ -109,12 +111,12 @@ cask 'the-unarchiver'
 cask 'logitech-g-hub'
 cask "logi-options-plus"
 
-brew "romkatv/powerlevel10k/powerlevel10k"
-brew "warrensbox/tap/tfswitch"
-brew "warrensbox/tap/tgswitch"
-brew "golangci/tap/golangci-lint"
-brew "goreleaser/tap/goreleaser"
-brew "heroku/brew/heroku"
+brew "powerlevel10k"
+brew "tfswitch"
+brew "tgswitch"
+brew "golangci-lint"
+brew "goreleaser"
+brew "heroku"
 
 # Install Mac AppStore applications
 
