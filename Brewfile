@@ -24,7 +24,6 @@ brew 'jq'
 brew 'jump'
 brew 'mercurial'
 brew 'trash'
-brew 'upx'
 brew 'wget'
 brew 'yamllint'
 brew 'yq'
@@ -61,11 +60,12 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
 brew 'java'
-brew 'git-credential-manager'
 
 brew 'mas'
 
 # Install cask applications
+
+cask 'git-credential-manager'
 
 cask 'appcleaner'
 
