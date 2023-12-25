@@ -10,7 +10,6 @@ Hannes Juutilainen <hjuutilainen@mac.com>
 """
 
 import sys
-import getopt
 import os
 import subprocess
 import plistlib
@@ -23,7 +22,7 @@ import getpass
 appleApps = [
     "/System/Applications/Utilities/Terminal.app",
     "/Applications/Safari.app",
-    "/System/Applications/System Preferences.app"
+    "/System/Applications/System Settings.app"
 ]
 
 # =======================================
@@ -37,12 +36,7 @@ thirdPartyApps = [
         "forced": True
     },
     {
-        "path": "/Applications/LastPass.app",
-        "args": [ "--before", "Terminal" ],
-        "forced": True
-    },
-    {
-        "path": "/Applications/1Password 7.app",
+        "path": "/Applications/1Password.app",
         "args": [ "--before", "Terminal" ],
         "forced": True
     },
@@ -72,12 +66,12 @@ thirdPartyApps = [
         "forced": True
     },
     {
-        "path": "/Applications/PyCharm CE.app",
+        "path": "/Applications/Visual Studio Code.app",
         "args": [ "--after", "Terminal" ],
         "forced": True
     },
     {
-        "path": "/Applications/Visual Studio Code.app",
+        "path": "/Applications/PyCharm CE.app",
         "args": [ "--after", "Terminal" ],
         "forced": True
     },
@@ -114,10 +108,11 @@ class Usage(Exception):
     def __init__(self, msg):
         self.msg = msg
 
+
 def dockutilExists():
     whichProcess = ["which", "dockutil"]
-    p = subprocess.Popen(whichProcess, bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    (path, err) = p.communicate()
+    p = subprocess.Popen(whichProcess, bufsize=0, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    (path, _) = p.communicate()
     if os.path.exists(path.strip()):
         global dockutilPath
         dockutilPath = path.strip()
@@ -125,33 +120,35 @@ def dockutilExists():
     else:
         return False
 
+
 def removeEverything( restartDock=False ):
     dockutilProcess = [dockutilPath, "--remove", "all"]
     if not restartDock:
         dockutilProcess.append("--no-restart")
-    p = subprocess.Popen(dockutilProcess, bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    (output, err) = p.communicate()
-    pass
+    p = subprocess.Popen(dockutilProcess, bufsize=0, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p.communicate()
+
 
 def dockutilAdd(aPath, args):
     dockutilProcess = [dockutilPath, "--add", aPath]
     if args:
         dockutilProcess = dockutilProcess + args
     dockutilProcess.append("--no-restart")
-    p = subprocess.Popen(dockutilProcess, bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    (output, err) = p.communicate()
-    pass
+    p = subprocess.Popen(dockutilProcess, bufsize=0, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p.communicate()
+
 
 def localDisks():
     """Run diskutil list -plist """
     diskutilProcess = ["diskutil", "list", "-plist"]
-    p = subprocess.Popen(diskutilProcess, bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    (output, err) = p.communicate()
+    p = subprocess.Popen(diskutilProcess, bufsize=0, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    (output, _) = p.communicate()
     if output != "":
-        outputPlist = plistlib.readPlistFromString(output)
+        outputPlist = plistlib.loads(output)
         return outputPlist['VolumesFromDisks']
     else:
         return None
+
 
 def addFolders():
     """
@@ -168,25 +165,31 @@ def addFolders():
     pathsToCheckInDisks = ["Users", "home"]
     for aDisk in localDisks():
         diskPath = os.path.join("/Volumes", aDisk)
+
+        applications = os.path.join(diskPath, "Applications")
+        if os.path.exists(applications):
+            label = "Applications"
+            args = [
+                "--view", "automatic",
+                "--display", "stack",
+                "--sort", "name",
+                "--label", label
+            ]
+            dockutilAdd(applications, args)
+            print("Added %s" % applications)
+
         for aPath in pathsToCheckInDisks:
             homePath = os.path.join(diskPath, aPath, username)
             homePath = os.path.realpath(homePath)
-            # documents = os.path.join(homePath, "Documents")
+
             downloads = os.path.join(homePath, "Downloads")
-            # if os.path.exists(documents):
-            #     label = "Documents"
-            #     args = [
-            #         "--view", "grid",
-            #         "--display", "stack",
-            #         "--sort", "name",
-            #         "--label", label
-            #     ]
-            #     dockutilAdd(documents, args)
-            #     print("Added %s" % documents)
+
+
+
             if os.path.exists(downloads):
                 label = "Downloads"
                 args = [
-                    "--view", "grid",
+                    "--view", "fan",
                     "--display", "stack",
                     "--sort", "dateadded",
                     "--label", label
