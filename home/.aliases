@@ -9,3 +9,6 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 
 # Terragrunt
 alias tg="terragrunt"
+
+# Bat
+alias bat="cat"

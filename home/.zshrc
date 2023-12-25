@@ -17,6 +17,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   1password
+  aliases
   ansible
   aws
   branch
