@@ -11,7 +11,7 @@ sh osx-user-defaults.sh
 mkdir -p ~/.nvm
 mkdir -p ~/.pyenv
 
-sudo ln -sf $(brew --prefix bash)/bin/bash /usr/local/bin/bash
+sh setup-bash.sh
 
 echo "\nInstalling Fonts"
 open -a Font\ Book ./fonts/*.ttf
@@ -21,3 +21,7 @@ sh setup-dock.sh
 
 sh install-zsh.sh
 yes | cp -a ./home/ ~/
+
+sh setup-powerlevel10k.sh
+
+compaudit | xargs chmod g-w,o-w
