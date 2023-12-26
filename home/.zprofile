@@ -2,7 +2,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export EDITOR="code"
 
-export GOPATH="$HOME/Documents/workspaces/go/"
+export GOPATH="$HOME/workspaces/go/"
 export PATH="$GOPATH/bin:$PATH"
 
 export PYENV_ROOT="$HOME/.pyenv"
