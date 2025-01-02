@@ -1,0 +1,17 @@
+term = xterm-256color
+theme = Github Dark
+macos-titlebar-style = transparent
+window-padding-x = 4
+window-padding-y = 0
+window-height = 80
+window-width = 166
+window-theme = "dark"
+window-decoration = true
+background-opacity = 0.95
+foreground = #FFFFFF
+cursor-style = block
+cursor-style-blink = true
+copy-on-select = true
+quick-terminal-position = bottom
+keybind = cmd+backspace=text:\x15
+keybind = global:super+alt+t=toggle_quick_terminal

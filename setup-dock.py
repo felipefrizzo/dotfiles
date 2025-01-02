@@ -9,12 +9,11 @@ way I like it. Use with caution...
 Hannes Juutilainen <hjuutilainen@mac.com>
 """
 
-import sys
-import os
-import subprocess
-import plistlib
 import getpass
-
+import os
+import plistlib
+import subprocess
+import sys
 
 # =======================================
 # Standard Applications
@@ -71,12 +70,12 @@ thirdPartyApps = [
         "forced": True
     },
     {
-        "path": "/Applications/PyCharm CE.app",
+        "path": "/Applications/Sourcetree.app",
         "args": [ "--after", "Terminal" ],
         "forced": True
     },
     {
-        "path": "/Applications/Sourcetree.app",
+        "path": "/Applications/Ghostty.app",
         "args": [ "--after", "Terminal" ],
         "forced": True
     },
