@@ -28,6 +28,8 @@ brew 'wget'
 brew 'yamllint'
 brew 'yq'
 brew 'bat'
+brew 'atuin'
+brew 'eza'
 
 brew 'htop'
 brew 'nmap'
@@ -75,7 +77,6 @@ cask 'rectangle'
 cask 'soundsource'
 
 cask 'discord'
-cask 'keybase'
 cask 'slack'
 cask 'zoom'
 cask 'grammarly'
@@ -89,6 +90,7 @@ cask 'iterm2'
 cask 'ghostty'
 cask 'ngrok'
 cask 'visual-studio-code'
+cask 'zed'
 
 cask 'brave-browser'
 cask 'firefox-developer-edition'
@@ -119,7 +121,6 @@ brew "heroku"
 
 # Install Mac AppStore applications
 
-# mas "harvest", id: 506189836
 mas "Numbers", id: 409203825
 mas "Grammarly for Safari", id: 1462114288
 mas "WhatsApp", id: 1147396723
