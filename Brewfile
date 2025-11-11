@@ -1,10 +1,8 @@
-tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "homebrew/services"
 
 tap "golangci/tap"
 tap "goreleaser/tap"
@@ -48,7 +46,7 @@ brew 'rustup-init'
 
 brew 'ansible'
 brew 'awscli'
-brew 'packer'
+
 
 brew 'helm'
 brew 'k3d'
@@ -72,7 +70,6 @@ cask 'git-credential-manager'
 cask 'appcleaner'
 
 cask 'istat-menus'
-cask 'beardedspice'
 cask 'rectangle'
 cask 'soundsource'
 
@@ -105,7 +102,6 @@ cask 'microsoft-auto-update'
 cask 'microsoft-office'
 cask 'microsoft-teams'
 
-cask 'diffmerge'
 cask 'sourcetree'
 cask 'the-unarchiver'
 
