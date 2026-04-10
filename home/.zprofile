@@ -5,14 +5,14 @@ export EDITOR="code"
 export GOPATH="$HOME/workspaces/go/"
 export PATH="$GOPATH/bin:$PATH"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 if type brew &>/dev/null; then
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
+  # export NVM_DIR="$HOME/.nvm"
+  # [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
 
   export PATH="$(brew --prefix openssl@1.1)/bin:$PATH"
   export PATH="$(brew --prefix sqlite3)/bin:$PATH"
@@ -30,6 +30,13 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 . "$HOME/.aliases"
 . "$HOME/.switch_version"
 eval "$(jump shell)"
+eval "$(atuin init zsh)"
+eval "$(mise activate zsh)"
+
+bindkey '^r' atuin-search
+# bind to the up key, which depends on terminal mode
+bindkey '^[[A' atuin-up-search
+bindkey '^[OA' atuin-up-search
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export GODEBUG=asyncpreemptoff=1

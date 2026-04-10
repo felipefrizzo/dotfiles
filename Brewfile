@@ -8,7 +8,7 @@ tap "golangci/tap"
 tap "goreleaser/tap"
 tap "heroku/brew"
 
-tap "warrensbox/tap"
+# tap "warrensbox/tap"
 tap "romkatv/powerlevel10k"
 
 # Install homebrew formulas
@@ -34,19 +34,19 @@ brew 'nmap'
 brew 'telnet'
 brew 'tree'
 
-brew 'go'
-brew 'hugo'
-brew 'nvm'
-brew 'pyenv'
-brew 'pyenv-virtualenv'
-brew 'rbenv'
-brew 'yarn'
-brew 'zig'
-brew 'rustup-init'
+# brew 'go'
+# brew 'hugo'
+# brew 'nvm'
+# brew 'pyenv'
+# brew 'pyenv-virtualenv'
+# brew 'rbenv'
+# brew 'yarn'
+# brew 'zig'
+# brew 'rustup-init'
+brew 'mise'
 
 brew 'ansible'
 brew 'awscli'
-
 
 brew 'helm'
 brew 'k3d'
@@ -59,7 +59,7 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
-brew 'java'
+# brew 'java'
 
 brew 'mas'
 
@@ -109,8 +109,8 @@ cask 'logitech-g-hub'
 cask "logi-options-plus"
 
 brew "powerlevel10k"
-brew "tfswitch"
-brew "tgswitch"
+# brew "tfswitch"
+# brew "tgswitch"
 brew "golangci-lint"
 brew "goreleaser"
 brew "heroku"
