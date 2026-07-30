@@ -70,11 +70,6 @@ thirdPartyApps = [
         "forced": True
     },
     {
-        "path": "/Applications/Zed.app",
-        "args": [ "--after", "Terminal" ],
-        "forced": True
-    },
-    {
         "path": "/Applications/Sourcetree.app",
         "args": [ "--after", "Terminal" ],
         "forced": True
