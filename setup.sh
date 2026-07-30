@@ -34,6 +34,13 @@ while IFS= read -r source; do
   npx --yes skills@latest add "$source"
 done < ~/skills-manifest.txt
 
+echo "\nInstalling caveman skill (Claude Code / Codex / Copilot / Cursor / etc.)"
+curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.sh | bash
+
+echo "\nInstalling iTerm2 dynamic profile"
+mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles
+cp iterm/dynamic-profile.json ~/Library/Application\ Support/iTerm2/DynamicProfiles/felipefrizzo.json
+
 sh setup-powerlevel10k.sh
 
 compaudit | xargs chmod g-w,o-w
