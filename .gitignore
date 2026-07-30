@@ -1,0 +1,5 @@
+# Your global gitignore excludes .claude/ (to stop AI session state from
+# leaking into random project repos). This repo deliberately tracks a
+# curated subset of AI tool config under home/, so un-ignore it here.
+!home/.claude/
+!home/.claude/**

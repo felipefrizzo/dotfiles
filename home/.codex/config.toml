@@ -1,0 +1,12 @@
+# This file intentionally tracks only the settings you hand-author.
+# Everything else in ~/.codex/config.toml (marketplaces, plugin enable
+# flags, mcp_servers wired by the ChatGPT desktop app, hook trust hashes,
+# per-project trust grants) is app-managed state that regenerates from
+# normal use -- tracking it here would let a fresh install clobber it,
+# or track values that are already stale by the next app update.
+
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+
+[shell_environment_policy]
+inherit = "core"
