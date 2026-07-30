@@ -1,0 +1,9 @@
+# Third-party agent skills, installed via `npx skills add <source>`.
+# One source per line. Regenerate by running, from ~/.agents/.skill-lock.json:
+#   jq -r '[.skills[].source] | unique | .[]' ~/.agents/.skill-lock.json
+# Skill file contents are never tracked here -- only where to fetch them from.
+blader/humanizer
+jeffallan/claude-skills
+langfuse/skills
+mattpocock/skills
+vercel-labs/skills

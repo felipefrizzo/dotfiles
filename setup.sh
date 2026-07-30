@@ -26,6 +26,14 @@ ln -sf ~/.agent-instructions/AGENTS.md ~/.copilot/copilot-instructions.md
 ln -sf ~/.agent-instructions/RTK.md ~/.claude/RTK.md
 ln -sf ~/.agent-instructions/RTK.md ~/.codex/RTK.md
 
+echo "\nInstalling third-party agent skills"
+while IFS= read -r source; do
+  case "$source" in
+    ''|'#'*) continue ;;
+  esac
+  npx --yes skills@latest add "$source"
+done < ~/skills-manifest.txt
+
 sh setup-powerlevel10k.sh
 
 compaudit | xargs chmod g-w,o-w
