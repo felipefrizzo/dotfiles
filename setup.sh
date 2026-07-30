@@ -8,9 +8,6 @@ sh install-homebrew.sh
 sudo sh osx-system-defaults.sh
 sh osx-user-defaults.sh
 
-mkdir -p ~/.nvm
-mkdir -p ~/.pyenv
-
 sh setup-bash.sh
 
 echo "\nInstalling Fonts"
@@ -21,6 +18,13 @@ sh setup-dock.sh
 
 sh install-zsh.sh
 yes | cp -a ./home/ ~/
+
+echo "\nLinking AI agent instructions"
+ln -sf ~/.agent-instructions/AGENTS.md ~/.claude/CLAUDE.md
+ln -sf ~/.agent-instructions/AGENTS.md ~/.codex/AGENTS.md
+ln -sf ~/.agent-instructions/AGENTS.md ~/.copilot/copilot-instructions.md
+ln -sf ~/.agent-instructions/RTK.md ~/.claude/RTK.md
+ln -sf ~/.agent-instructions/RTK.md ~/.codex/RTK.md
 
 sh setup-powerlevel10k.sh
 
