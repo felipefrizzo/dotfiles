@@ -40,12 +40,7 @@ thirdPartyApps = [
         "forced": True
     },
     {
-        "path": "/Applications/Authy Desktop.app",
-        "args": [ "--before", "Terminal" ],
-        "forced": True
-    },
-    {
-        "path": "/Applications/Opera developer.app",
+        "path": "/Applications/Opera Developer.app",
         "args": [ "--after", "Terminal" ],
         "forced": True
     },
@@ -70,6 +65,16 @@ thirdPartyApps = [
         "forced": True
     },
     {
+        "path": "/Applications/Cursor.app",
+        "args": [ "--after", "Terminal" ],
+        "forced": True
+    },
+    {
+        "path": "/Applications/Zed.app",
+        "args": [ "--after", "Terminal" ],
+        "forced": True
+    },
+    {
         "path": "/Applications/Sourcetree.app",
         "args": [ "--after", "Terminal" ],
         "forced": True
@@ -85,17 +90,22 @@ thirdPartyApps = [
         "forced": True
     },
     {
-        "path": "/Applications/Skype.app",
-        "args": [ "--after", "Safari" ],
-        "forced": True
-    },
-    {
         "path": "/Applications/Slack.app",
         "args": [ "--after", "Safari" ],
         "forced": True
     },
     {
         "path": "/Applications/Spotify.app",
+        "args": [ "--after", "Safari" ],
+        "forced": True
+    },
+    {
+        "path": "/Applications/Keybase.app",
+        "args": [ "--after", "Safari" ],
+        "forced": True
+    },
+    {
+        "path": "/Applications/Discord.app",
         "args": [ "--after", "Safari" ],
         "forced": True
     },
