@@ -1,43 +1,39 @@
-## Model routing
+# Agent instructions
 
-Default model: Sonnet.
+Tool-agnostic rules, shared across every AI coding agent (Claude Code, Codex,
+Copilot CLI, ...). Claude-Code-specific routing (model tiers, subagent
+spawning) lives in `CLAUDE.md`, which imports this file.
 
-Use Haiku for:
+## Skill routing
 
-- simple boilerplate
-- documentation edits
-- formatting-only changes
-- trivial test generation
-- summarizing logs or diffs
+Before starting any non-trivial task, classify the task phase and use the
+matching skill if it's installed for this agent:
 
-Use Sonnet for:
+- Planning / PRD / requirements -> `prd` skill, then `senior-architect` for design.
+- Architecture / design decisions -> `senior-architect` skill.
+- Go implementation -> `golang-pro` skill.
+- Python implementation -> `python-pro` skill.
+- Review / PR quality -> `code-review` skill.
+- Debugging -> `diagnosing-bugs` skill.
+- Verification / test-first work -> `tdd` skill.
 
-- normal implementation
-- refactoring
-- test writing
-- debugging with clear failure signals
-- code review
+If the required skill is unavailable for this agent, say so before continuing
+instead of silently skipping it.
 
-Use Opus only for:
+Do not implement before selecting the task phase, relevant skills, files to
+inspect, and verification plan.
 
-- complex architecture decisions
-- hard debugging after Sonnet fails
-- large ambiguous refactors
-- security-sensitive reasoning
-- cross-system design tradeoffs
+For mixed tasks, use skills in sequence:
 
-Before escalating to Opus, state:
-
-1. why Sonnet is insufficient
-2. what evidence justifies escalation
-3. expected bounded task for Opus
-
-Never use Opus for routine edits, formatting, boilerplate, or broad exploration.
-Minimize output tokens. Prefer concise plans, diffs, and test results.
+1. planning/architecture
+2. language-specific implementation
+3. verification
+4. review
 
 ## Git operation routing
 
-Use the cheapest available model for routine Git operations:
+Use the fastest/cheapest model tier this agent has available for routine Git
+operations:
 
 - git status
 - git diff --stat
@@ -47,11 +43,7 @@ Use the cheapest available model for routine Git operations:
 - creating simple branch names
 - writing conventional commit messages from an already-reviewed diff
 
-Use Haiku for these tasks when available.
-
-Do not use Opus for Git operations unless the Git state is complex or risky.
-
-Escalate to Sonnet only when:
+Escalate to the default/main tier only when:
 - merge conflicts exist
 - rebase/cherry-pick fails
 - history rewriting is requested
@@ -70,29 +62,6 @@ Before pushing:
 2. confirm remote
 3. confirm commit exists
 4. do not force-push unless explicitly requested
-
-## Skill routing
-
-Before starting any non-trivial task, classify the task phase:
-
-- Planning / PRD / requirements -> use PRD planning skill and architecture skill.
-- Architecture / design decisions -> use architecture skill.
-- Go implementation -> use Golang skill.
-- Python implementation -> use Python skill.
-- Review / PR quality -> use code-review skill.
-- Debugging -> use systematic-debugging skill.
-- Verification -> use test/verification skill.
-
-If the required skill is unavailable, say so before continuing.
-
-Do not implement before selecting the task phase, relevant skills, files to inspect, and verification plan.
-
-For mixed tasks, use skills in sequence:
-
-1. planning/architecture
-2. language-specific implementation
-3. verification
-4. review
 
 ## Token discipline
 
@@ -114,40 +83,18 @@ For trivial changes, skip formal planning.
 For small changes, use a compact plan.
 For medium/large changes, use the full engineering loop.
 
-## Subagent model routing
+## RTK CLI
 
-The main session's model is fixed at session start. Subagents (`Agent(...)` tool) are the only place inside a running session where the model can actually be chosen, so always pass an explicit `model:` override on every subagent spawn — never rely on inheritance from the main session.
+`rtk` is a token-optimized CLI proxy (60-90% savings on dev operations). See
+`RTK.md` for the command reference. On Claude Code it's auto-loaded via
+`CLAUDE.md`'s `@RTK.md` import and commands are auto-rewritten by a hook; on
+other agents, invoke `rtk` directly (e.g. `rtk gain`, `rtk discover`) and open
+`RTK.md` manually when needed -- there's no automatic hook rewrite outside
+Claude Code.
 
-Pick `model:` from the task phase, mirroring the rules above:
-
-- `model: "haiku"` — doc edits, formatting, boilerplate scaffolding, trivial test generation, log/diff summarization, simple file lookups, routine Git operations (status, diff, add, commit, push, conventional commit message drafting from a reviewed diff), simple branch naming.
-- `model: "sonnet"` — normal implementation, refactoring, test writing, debugging with clear failure signals, code review, broad codebase exploration (Explore agent), most general-purpose research.
-- `model: "opus"` — complex architecture decisions, hard debugging after Sonnet has already failed, large ambiguous refactors, security-sensitive reasoning, cross-system design tradeoffs. Before spawning an Opus subagent, state in the spawning message: (1) why Sonnet is insufficient, (2) what evidence justifies escalation, (3) the bounded task for Opus.
-
-Special cases:
-
-- `claude-code-guide` agent → Haiku (doc/reference lookups).
-- `Explore` agent → Sonnet by default; Haiku only for a single trivial file lookup.
-- `Plan` / `senior-architect` work → Sonnet; Opus only when tradeoffs are genuinely cross-system.
-- Git operations delegated to subagents → Haiku unless the state is complex (merge conflicts, history rewrite, commit splitting, large/risky diffs) → then Sonnet.
-
-When unsure between two tiers, pick the cheaper one and escalate only on failure. Never default to Opus for routine work.
-
-### Delegation-first workflow
-
-The main session's model is whatever the session was launched on. To honor the routing rules above *inside* a running session, prefer delegating to a subagent over doing the work on the main thread whenever a cheaper model would suffice.
-
-On every user request, before acting:
-
-1. **Classify the task phase** (planning, implementation, refactor, debug, review, doc edit, Git op, exploration, architecture).
-2. **Pick the target model** per the routing rules above.
-3. **If the target model is cheaper than the main-session model**, delegate the work to an `Agent(...)` call with explicit `model:` set to the target. Brief the subagent self-containedly (it doesn't see this conversation).
-4. **Stay on the main thread only when** the request is trivial conversational (greeting, clarifying question, single-sentence answer), the main session is already on the correct tier, or the task is small enough that the delegation overhead exceeds the savings (rule of thumb: < ~3 tool calls of work).
-5. **Compose for mixed tasks**: delegate the parts that fit a cheaper model (e.g. doc edit, Git ops, scaffolding) even when the harder parts stay on the main thread. Don't bundle everything onto the main model just because one piece needs it.
-
-When delegating, name the agent type (`Explore`, `general-purpose`, `claude-code-guide`, `Plan`, etc.) and the `model:` together. Treat the choice of agent type and the choice of model as two independent decisions.
-
-@RTK.md
 # graphify
+
 - **graphify** - any input to knowledge graph. Trigger: `/graphify`
-When the user types `/graphify`, use the installed graphify skill or instructions before doing anything else.
+
+When the user types `/graphify`, use the installed graphify skill or
+instructions before doing anything else.

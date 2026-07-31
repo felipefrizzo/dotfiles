@@ -23,7 +23,7 @@ echo "\nInstalling mise-managed toolchains (node/python/go/java)"
 mise install
 
 echo "\nLinking AI agent instructions"
-ln -sf ~/.agent-instructions/AGENTS.md ~/.claude/CLAUDE.md
+ln -sf ~/.agent-instructions/CLAUDE.md ~/.claude/CLAUDE.md
 ln -sf ~/.agent-instructions/AGENTS.md ~/.codex/AGENTS.md
 ln -sf ~/.agent-instructions/AGENTS.md ~/.copilot/copilot-instructions.md
 ln -sf ~/.agent-instructions/RTK.md ~/.claude/RTK.md
