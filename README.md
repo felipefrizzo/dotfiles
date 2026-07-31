@@ -44,11 +44,12 @@ Also run [`dotfiles-confidential`](https://github.com/felipefrizzo/dotfiles-conf
 * a minimal `~/.codex/config.toml` fragment (`model`, `model_reasoning_effort`,
   `shell_environment_policy.inherit`) -- the rest of that file is written by the ChatGPT
   desktop app itself and regenerates from normal use, so it's intentionally not tracked
-* `~/.agent-instructions/AGENTS.md` (tool-agnostic rules), symlinked into Codex's `AGENTS.md`
-  and Copilot's `copilot-instructions.md` directly
-* `~/.agent-instructions/CLAUDE.md` (Claude-Code-specific model/subagent routing, `@AGENTS.md`
-  import), symlinked into `~/.claude/CLAUDE.md` -- only Claude Code supports `@file` imports, so
-  Codex/Copilot get the shared file straight, Claude gets the shared file plus its own routing
+* `~/.agent-instructions/AGENTS.md` (tool-agnostic rules), symlinked into Codex's `AGENTS.md`,
+  Copilot's `copilot-instructions.md`, and `~/.claude/AGENTS.md` directly
+* `~/.agent-instructions/CLAUDE.md` (Claude-Code-specific model/subagent routing), symlinked
+  into `~/.claude/CLAUDE.md`. It imports `@AGENTS.md`, which needs `~/.claude/AGENTS.md` to
+  exist as a sibling file since `@file` import resolution isn't guaranteed to follow the
+  symlink to its real path -- hence the separate `~/.claude/AGENTS.md` symlink above
 * `~/.agent-instructions/RTK.md`, symlinked into both tools' `RTK.md` -- edit once, every tool
   sees it; the hook that auto-rewrites shell commands through `rtk` is Claude-Code-only, other
   tools invoke `rtk` directly
