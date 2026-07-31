@@ -41,8 +41,10 @@ done < ~/skills-manifest.txt
 echo "\nInstalling caveman skill (Claude Code / Codex / Copilot / Cursor / etc.)"
 curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.sh | bash
 
-echo "\nInstalling graphify (uv tool, provides the graphify/graphify-mcp binaries used by the graphify skill)"
+echo "\nInstalling graphify"
 uv tool install graphifyy
+graphify install --platform claude
+graphify install --platform codex
 
 echo "\nInstalling iTerm2 dynamic profile"
 mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles

@@ -57,9 +57,10 @@ Also run [`dotfiles-confidential`](https://github.com/felipefrizzo/dotfiles-conf
 * third-party agent skills, via `home/skills-manifest.txt` (one `npx skills add <source>` per
   line, regenerate from `~/.agents/.skill-lock.json`)
 * the [caveman](https://github.com/JuliusBrussee/caveman) skill, via its own installer
-* hand-authored/non-npx Claude skills, tracked directly as files: `home/.claude/skills/graphify/`
-  (skill), plus `uv tool install graphifyy` in `setup.sh` for the `graphify`/`graphify-mcp`
-  binaries it needs
+* [graphify](https://pypi.org/project/graphifyy/), via `uv tool install graphifyy` then
+  `graphify install --platform claude|codex` -- the package ships its own skill file and
+  installs it itself, so it's intentionally not hand-copied into this repo (would drift from
+  whatever `graphifyy` ships on the next version bump)
 
 **Not tracked, ever:** API tokens/credentials of any kind. `GITHUB_TOKEN` and `JIRA_TOKEN` (used
 by the `rtk` hook and Codex's shell environment policy) must be set up manually on each machine --
