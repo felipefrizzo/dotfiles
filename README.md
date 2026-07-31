@@ -14,6 +14,11 @@ This include the following step.
 * copy bash configurations to home user folder
 * install latest updates from app store
 * configure Dock with the applications
+* link AI agent instructions (Claude Code / Codex / Copilot) to a single source
+* install third-party agent skills
+* install the caveman skill for every AI agent found on the machine
+* install graphify (uv tool + skill)
+* install the iTerm2 dynamic profile
 
 ## Installation
 
@@ -28,3 +33,35 @@ sh setup.sh
 cd ..
 rm -rf dotfiles
 ```
+
+Also run [`dotfiles-confidential`](https://github.com/felipefrizzo/dotfiles-confidential)'s
+`setup.sh` for personal casks/formulas and `.ssh/config` that don't belong in a public repo.
+
+## AI agent config (Claude Code / Codex / Copilot)
+
+`setup.sh` tracks and restores:
+
+* the hand-authored parts of `~/.claude/settings.json` and `~/.copilot/settings.json`
+* a minimal `~/.codex/config.toml` fragment (`model`, `model_reasoning_effort`,
+  `shell_environment_policy.inherit`) -- the rest of that file is written by the ChatGPT
+  desktop app itself and regenerates from normal use, so it's intentionally not tracked
+* `~/.agent-instructions/AGENTS.md` (tool-agnostic rules), symlinked into Codex's `AGENTS.md`,
+  Copilot's `copilot-instructions.md`, and `~/.claude/AGENTS.md` directly
+* `~/.agent-instructions/CLAUDE.md` (Claude-Code-specific model/subagent routing), symlinked
+  into `~/.claude/CLAUDE.md`. It imports `@AGENTS.md`, which needs `~/.claude/AGENTS.md` to
+  exist as a sibling file since `@file` import resolution isn't guaranteed to follow the
+  symlink to its real path -- hence the separate `~/.claude/AGENTS.md` symlink above
+* `~/.agent-instructions/RTK.md`, symlinked into both tools' `RTK.md` -- edit once, every tool
+  sees it; the hook that auto-rewrites shell commands through `rtk` is Claude-Code-only, other
+  tools invoke `rtk` directly
+* third-party agent skills, via `home/skills-manifest.txt` (one `npx skills add <source>` per
+  line, regenerate from `~/.agents/.skill-lock.json`)
+* the [caveman](https://github.com/JuliusBrussee/caveman) skill, via its own installer
+* [graphify](https://pypi.org/project/graphifyy/), via `uv tool install graphifyy` then
+  `graphify install --platform claude|codex` -- the package ships its own skill file and
+  installs it itself, so it's intentionally not hand-copied into this repo (would drift from
+  whatever `graphifyy` ships on the next version bump)
+
+**Not tracked, ever:** API tokens/credentials of any kind. `GITHUB_TOKEN` and `JIRA_TOKEN` (used
+by the `rtk` hook and Codex's shell environment policy) must be set up manually on each machine --
+they are intentionally absent from every file this repo manages, public or confidential.

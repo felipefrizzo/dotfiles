@@ -1,0 +1,9 @@
+# Global tool versions, mise-managed (see Brewfile: go/node/python/ruby/rust
+# toolchains are mise-managed, not brew-managed). "lts"/"latest" re-resolve
+# to whatever is current at install time, so a fresh machine always lands
+# on current versions instead of whatever was pinned when this was written.
+[tools]
+java = "21"
+node = "lts"
+python = "latest"
+go = "latest"

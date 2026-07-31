@@ -6,7 +6,6 @@ tap "homebrew/core"
 
 tap "golangci/tap"
 tap "goreleaser/tap"
-tap "heroku/brew"
 
 # tap "warrensbox/tap"
 tap "romkatv/powerlevel10k"
@@ -15,7 +14,6 @@ tap "romkatv/powerlevel10k"
 
 brew 'dos2unix'
 brew 'fd'
-brew 'gettext'
 brew 'git'
 brew 'httpie'
 brew 'jq'
@@ -32,18 +30,11 @@ brew 'eza'
 brew 'htop'
 brew 'nmap'
 brew 'telnet'
-brew 'tree'
 
+# go/node/python/ruby/rust toolchains are mise-managed, not brew-managed.
 # brew 'go'
-# brew 'hugo'
-# brew 'nvm'
-# brew 'pyenv'
-# brew 'pyenv-virtualenv'
-# brew 'rbenv'
-# brew 'yarn'
-# brew 'zig'
-# brew 'rustup-init'
 brew 'mise'
+brew 'uv'
 
 brew 'ansible'
 brew 'awscli'
@@ -52,7 +43,6 @@ brew 'helm'
 brew 'k3d'
 brew 'kops'
 brew 'kubectx'
-brew 'kubernetes-cli'
 
 brew "zsh"
 brew "zsh-autosuggestions"
@@ -62,6 +52,31 @@ brew "zsh-syntax-highlighting"
 # brew 'java'
 
 brew 'mas'
+
+brew 'bash'
+brew 'cloudflared'
+brew 'cmake'
+brew 'curl'
+brew 'easy-rsa'
+brew 'eksctl'
+brew 'fastfetch'
+brew 'gh'
+brew 'gnupg'
+brew 'go-critic'
+brew 'go-size-analyzer'
+brew 'grpcurl'
+brew 'hadolint'
+brew 'hugo'
+brew 'jj'
+brew 'krew'
+brew 'mole'
+brew 'nomad'
+brew 'postgresql@14'
+brew 'protobuf'
+brew 'ripgrep'
+brew 'rtk'
+brew 'watch'
+brew 'zig'
 
 # Install cask applications
 
@@ -82,17 +97,18 @@ cask 'spotify'
 cask 'vlc'
 
 cask 'lens'
-cask 'docker'
+cask 'docker-desktop'
 cask 'iterm2'
 cask 'ghostty'
 cask 'ngrok'
 cask 'visual-studio-code'
+cask 'cursor'
 cask 'zed'
 
 cask 'brave-browser'
-cask 'firefox-developer-edition'
-cask 'google-chrome-canary'
-cask 'opera-developer'
+cask 'firefox@developer-edition'
+cask 'google-chrome@canary'
+cask 'opera@developer'
 cask 'tor-browser'
 
 cask 'mysqlworkbench'
@@ -101,19 +117,25 @@ cask 'pgadmin4'
 cask 'microsoft-auto-update'
 cask 'microsoft-office'
 cask 'microsoft-teams'
+cask 'microsoft-remote-desktop'
 
 cask 'sourcetree'
+cask 'diffmerge'
 cask 'the-unarchiver'
 
 cask 'logitech-g-hub'
-cask "logi-options-plus"
+cask 'logi-options+'
+cask 'beardedspice'
+
+cask 'claude'
+cask 'claude-code'
+cask 'codex'
+cask 'codex-app'
+cask 'copilot-cli'
 
 brew "powerlevel10k"
-# brew "tfswitch"
-# brew "tgswitch"
 brew "golangci-lint"
 brew "goreleaser"
-brew "heroku"
 
 # Install Mac AppStore applications
 
