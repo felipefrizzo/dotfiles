@@ -34,6 +34,7 @@ brew 'telnet'
 # go/node/python/ruby/rust toolchains are mise-managed, not brew-managed.
 # brew 'go'
 brew 'mise'
+brew 'uv'
 
 brew 'ansible'
 brew 'awscli'

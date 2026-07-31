@@ -17,6 +17,7 @@ This include the following step.
 * link AI agent instructions (Claude Code / Codex / Copilot) to a single source
 * install third-party agent skills
 * install the caveman skill for every AI agent found on the machine
+* install graphify (uv tool + skill)
 * install the iTerm2 dynamic profile
 
 ## Installation
@@ -56,6 +57,9 @@ Also run [`dotfiles-confidential`](https://github.com/felipefrizzo/dotfiles-conf
 * third-party agent skills, via `home/skills-manifest.txt` (one `npx skills add <source>` per
   line, regenerate from `~/.agents/.skill-lock.json`)
 * the [caveman](https://github.com/JuliusBrussee/caveman) skill, via its own installer
+* hand-authored/non-npx Claude skills, tracked directly as files: `home/.claude/skills/graphify/`
+  (skill), plus `uv tool install graphifyy` in `setup.sh` for the `graphify`/`graphify-mcp`
+  binaries it needs
 
 **Not tracked, ever:** API tokens/credentials of any kind. `GITHUB_TOKEN` and `JIRA_TOKEN` (used
 by the `rtk` hook and Codex's shell environment policy) must be set up manually on each machine --
