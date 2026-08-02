@@ -50,6 +50,7 @@ Escalate to the default/main tier only when:
 - commit splitting/squashing is needed
 - the diff is large and commit grouping requires judgment
 - sensitive files/secrets may be involved
+- a git/SSH auth failure occurs or a remote URL/protocol change is being considered
 
 Before committing:
 1. inspect git status
@@ -62,6 +63,25 @@ Before pushing:
 2. confirm remote
 3. confirm commit exists
 4. do not force-push unless explicitly requested
+
+### Git remote / auth safety
+
+Never change a remote's protocol (`ssh://`/`git@...` <-> `https://`) or URL to
+work around an auth failure. That's a silent security-relevant change, not a
+fix -- it can bypass SSH-agent-based auth (e.g. 1Password SSH agent gating
+the key with a passphrase prompt) and switch to a different credential path
+entirely. Treat `git remote set-url`, editing `.git/config`'s remote section,
+or editing `~/.ssh/config` as requiring explicit user approval every time,
+regardless of task phase or model tier.
+
+On a git auth failure (SSH handshake fails, agent has no identities, HTTPS
+prompts for credentials, etc.):
+1. Retry once as-is -- SSH agent locks/timeouts are often transient (e.g.
+   1Password needs to be unlocked or the prompt approved).
+2. If it fails again, stop. Report the exact error. Ask the user to
+   unlock/approve the agent or fix auth -- do not change transport, do not
+   disable host key checking, do not attempt to read, print, or export any
+   SSH key, passphrase, or credential to make it succeed.
 
 ## Token discipline
 
