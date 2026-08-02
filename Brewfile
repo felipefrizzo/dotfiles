@@ -26,6 +26,7 @@ brew 'yq'
 brew 'bat'
 brew 'atuin'
 brew 'eza'
+brew 'chezmoi'
 
 brew 'htop'
 brew 'nmap'
