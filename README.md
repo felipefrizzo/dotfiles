@@ -19,23 +19,31 @@ yourself if/when you still use VS Code on the new machine.
 
 ## Installation
 
+On a genuinely fresh machine nothing is installed yet, not even Homebrew, so don't lead with
+`brew install chezmoi`. chezmoi's own install script has no dependencies -- it downloads the
+binary straight from GitHub releases -- and can run `chezmoi init --apply` for you in the same
+line:
+
 ```shell
-brew install chezmoi
-chezmoi init --apply felipefrizzo/dotfiles
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply felipefrizzo/dotfiles
 ```
 
-`chezmoi init --apply` clones this repo to `~/.local/share/chezmoi`, then applies it: runs the
-`run_once_before_*` scripts, writes every managed dotfile, then runs the `run_once_after_*` /
-`run_onchange_after_*` scripts. Re-running `chezmoi apply` later only re-applies dotfiles that
-changed and reruns `run_onchange_` scripts whose watched content (Brewfile, skills manifest)
-changed -- everything else is skip if unchanged.
+That installs chezmoi to `~/.local/bin`, clones this repo to `~/.local/share/chezmoi`, then
+applies it: runs the `run_once_before_*` scripts (Xcode CLT, Homebrew itself, oh-my-zsh), writes
+every managed dotfile, then runs the `run_once_after_*` / `run_onchange_after_*` scripts (brew
+bundle, macOS defaults, mise, AI skills, ...). Once chezmoi is installed, `brew install chezmoi`
+also works to keep the binary itself updated later; re-running `chezmoi apply` only re-applies
+dotfiles that changed and reruns `run_onchange_` scripts whose watched content (Brewfile, skills
+manifest) changed -- everything else is skipped if unchanged.
 
 Also run [`dotfiles-confidential`](https://github.com/felipefrizzo/dotfiles-confidential) the same
 way, as an independent second chezmoi profile, for personal casks/formulas and `.ssh/config` that
-don't belong in a public repo:
+don't belong in a public repo. It's a private repo, so `init` needs SSH access already working
+(1Password's SSH agent set up and signed in) -- by this point chezmoi itself is already installed
+from the step above, so just run `chezmoi` directly instead of the curl one-liner again:
 
 ```shell
-chezmoi init --apply --config ~/.config/chezmoi-confidential/chezmoi.toml felipefrizzo/dotfiles-confidential
+chezmoi init --apply --config ~/.config/chezmoi-confidential/chezmoi.toml git@github.com:felipefrizzo/dotfiles-confidential.git
 ```
 
 (Point `--config` at a second, throwaway config file so this doesn't collide with the public
