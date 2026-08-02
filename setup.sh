@@ -35,7 +35,7 @@ while IFS= read -r source; do
   case "$source" in
     ''|'#'*) continue ;;
   esac
-  npx --yes skills@latest add $source
+  npx --yes skills@latest add -g -y $source </dev/null
 done < ~/skills-manifest.txt
 
 echo "\nInstalling caveman skill (Claude Code / Codex / Copilot / Cursor / etc.)"
