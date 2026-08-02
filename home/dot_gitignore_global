@@ -74,3 +74,20 @@ DerivedData
 # Terraform
 *.tfvars
 .infracost
+
+*report.csv
+*report.txt
+
+.env
+.env.*
+
+mise.toml
+
+.cursor
+.claude
+.agents
+.windsurf
+skills
+skills-lock.json
+
+graphify-out/

@@ -11,7 +11,7 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 alias tg="terragrunt"
 
 # Bat
-alias bat="cat"
+alias cat="bat"
 
 # Eza
 alias ls='eza --icons --color=auto --group-directories-first'

@@ -3,6 +3,8 @@
 	email = felipefrizzo@gmail.com
 [credential]
 	helper = osxkeychain
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [color]
 	diff = auto
 	status = auto
@@ -11,7 +13,7 @@
 [merge]
 	summary = true
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/felipefrizzo/.gitignore_global
 	editor = code -n -w
 [push]
 	default = current
@@ -32,7 +34,7 @@
 	renames = copies
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -42,3 +44,18 @@
 	defaultBranch = main
 [pull]
 	rebase = true
+[commit]
+	template = /Users/felipefrizzo/.stCommitMsg
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[credential "https://jaxf-github.fanatics.corp"]
+	provider = github
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
