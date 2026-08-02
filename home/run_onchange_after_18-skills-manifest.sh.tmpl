@@ -1,0 +1,18 @@
+#!/bin/zsh
+set -eu
+
+# skills-manifest.txt content, embedded (via a no-op heredoc) so this
+# script's hash changes -- and chezmoi reruns it -- whenever the manifest
+# changes. The manifest is read for real from $HOME below, after chezmoi has
+# applied it.
+: <<'MANIFEST_HASH'
+{{ include "skills-manifest.txt" -}}
+MANIFEST_HASH
+
+echo "\nInstalling third-party agent skills"
+while IFS= read -r source; do
+  case "$source" in
+    ''|'#'*) continue ;;
+  esac
+  npx --yes skills@latest add -g -y $source </dev/null
+done < "$HOME/skills-manifest.txt"

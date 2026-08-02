@@ -1,0 +1,6 @@
+#!/bin/zsh
+set -eu
+
+echo "\nInstalling iTerm2 dynamic profile"
+mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles
+cp "{{ .chezmoi.sourceDir }}/iterm/dynamic-profile.json" ~/Library/Application\ Support/iTerm2/DynamicProfiles/felipefrizzo.json

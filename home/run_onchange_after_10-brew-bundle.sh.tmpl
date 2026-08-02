@@ -1,0 +1,16 @@
+#!/bin/zsh
+set -eu
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# Brewfile content is embedded below (rather than read from a path) so this
+# script's rendered content -- and chezmoi's run_onchange_ hash of it --
+# changes whenever the Brewfile changes.
+printf "\nInstalling applications from homebrew\n"
+brew bundle --file=/dev/stdin <<'BREWFILE'
+{{ include "Brewfile" -}}
+BREWFILE
+
+printf "\nCleanup brew formulas\n"
+brew cleanup --prune=all

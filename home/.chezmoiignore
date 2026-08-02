@@ -1,0 +1,7 @@
+# Files that live under the chezmoi source tree so scripts can reference them
+# via {{ .chezmoi.sourceDir }}, but that are not themselves dotfiles to apply
+# to $HOME.
+Brewfile
+setup-dock.py
+fonts/**
+iterm/**
