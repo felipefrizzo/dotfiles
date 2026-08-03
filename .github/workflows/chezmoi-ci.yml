@@ -11,12 +11,22 @@ on:
 
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    # Public repo -> Actions minutes are free regardless of runner OS, and
+    # every script here targets macOS specifically (/opt/homebrew, defaults,
+    # softwareupdate, zsh-only syntax in run_once_after_99). macos-latest
+    # matches the real target and guarantees zsh is present, unlike
+    # ubuntu-latest.
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Install chezmoi
         run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
+
+      # macOS runner images don't ship shellcheck (unlike ubuntu-latest's),
+      # but do have Homebrew preinstalled.
+      - name: Install shellcheck
+        run: brew install shellcheck
 
       - name: Render every .tmpl script
         run: |
