@@ -14,5 +14,7 @@ while IFS= read -r source; do
   case "$source" in
     ''|'#'*) continue ;;
   esac
+  # shellcheck disable=SC2086 # intentional word-splitting: a manifest line can
+  # carry extra space-separated flags, e.g. '--skill foo --skill bar'
   npx --yes skills@latest add -g -y $source </dev/null
 done < "$HOME/skills-manifest.txt"

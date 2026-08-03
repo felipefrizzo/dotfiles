@@ -1,0 +1,82 @@
+name: chezmoi
+
+# Static validation only -- this never runs the scripts for real (most of
+# them install GUI apps, touch the Dock, or need macOS/sudo/network access
+# that isn't safe or meaningful on a shared CI runner). What it does check:
+# every script parses, every template renders, and chezmoi's source state
+# as a whole applies cleanly against a throwaway destination.
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install chezmoi
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
+
+      - name: Render every .tmpl script
+        run: |
+          set -eu
+          export PATH="$HOME/.local/bin:$PATH"
+          mkdir -p /tmp/rendered
+          for f in home/run_*.tmpl; do
+            [ -e "$f" ] || continue
+            name="$(basename "${f%.tmpl}")"
+            chezmoi execute-template --source home < "$f" > "/tmp/rendered/$name"
+          done
+          ls -la /tmp/rendered
+
+      - name: Shellcheck run scripts
+        run: |
+          set -eu
+          fail=0
+
+          # Plain (non-template) scripts, checked in place so .shellcheckrc
+          # (shell=bash override, since shellcheck has no zsh mode) applies.
+          # run_once_after_99-fix-completion-perms.sh is zsh-only array
+          # syntax with no bash equivalent, so it's syntax-checked with zsh
+          # instead, below, rather than shellcheck.
+          for f in home/run_*; do
+            case "$f" in
+              *.tmpl|*run_once_after_99*) continue ;;
+            esac
+            echo "== $f =="
+            shellcheck "$f" || fail=1
+          done
+
+          # Rendered templates live outside the repo tree, so .shellcheckrc
+          # isn't auto-discovered -- pass the same overrides explicitly.
+          for f in home/run_*.tmpl; do
+            [ -e "$f" ] || continue
+            name="$(basename "${f%.tmpl}")"
+            echo "== $f (rendered) =="
+            shellcheck -s bash -e SC2028 "/tmp/rendered/$name" || fail=1
+          done
+
+          exit "$fail"
+
+      - name: zsh syntax check every script (incl. zsh-only ones)
+        run: |
+          set -eu
+          fail=0
+          for f in home/run_*; do
+            case "$f" in
+              *.tmpl) continue ;;
+            esac
+            zsh -n "$f" || fail=1
+          done
+          for f in /tmp/rendered/*; do
+            [ -e "$f" ] || continue
+            zsh -n "$f" || fail=1
+          done
+          exit "$fail"
+
+      - name: chezmoi apply --dry-run against a throwaway destination
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          mkdir -p "$RUNNER_TEMP/fake-home"
+          chezmoi apply --source home --destination "$RUNNER_TEMP/fake-home" -n -v < /dev/null

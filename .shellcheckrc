@@ -1,0 +1,9 @@
+# All scripts in this repo are #!/bin/zsh. shellcheck has no zsh mode, so CI
+# checks them as bash (close enough for the constructs used here, except
+# run_once_after_99-fix-completion-perms.sh which uses zsh-only array syntax
+# and is excluded from shellcheck entirely -- see the CI workflow).
+shell=bash
+
+# zsh's builtin `echo` expands backslash escapes (e.g. "\n") by default,
+# unlike bash/sh -- every plain-echo script in this repo relies on that.
+disable=SC2028

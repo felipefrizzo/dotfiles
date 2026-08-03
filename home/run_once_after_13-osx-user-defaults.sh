@@ -7,7 +7,7 @@ echo "Set OsX user defaults"
 # Trackpad
 # ==============================================
 # Tap to click
-IS_LAPTOP=`/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book"`
+IS_LAPTOP=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book")
 if [[ "$IS_LAPTOP" != "" ]]; then
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
   defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
@@ -28,6 +28,7 @@ defaults write com.apple.dock showLaunchpadGestureEnabled -bool true
 # Archive Utility
 # ==============================================
 # Move archives to trash after extraction
+# shellcheck disable=SC2088 # literal '~' is intentional -- Archive Utility expands it itself
 defaults write com.apple.archiveutility "dearchive-move-after" -string "~/.Trash"
 
 # Don't reveal extracted items
@@ -111,8 +112,8 @@ defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
 defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
 
 pathToTerminalPrefs="${HOME}/Library/Preferences/com.apple.Terminal.plist"
-/usr/libexec/PlistBuddy -c "Add :Window\ Settings:Pro:columnCount integer 200" ${pathToTerminalPrefs}
-/usr/libexec/PlistBuddy -c "Add :Window\ Settings:Pro:rowCount integer 79" ${pathToTerminalPrefs}
+/usr/libexec/PlistBuddy -c "Add :Window\ Settings:Pro:columnCount integer 200" "${pathToTerminalPrefs}"
+/usr/libexec/PlistBuddy -c "Add :Window\ Settings:Pro:rowCount integer 79" "${pathToTerminalPrefs}"
 
 # ==============================================
 # Sound

@@ -6,8 +6,8 @@ echo "\nSetup apps on dock..."
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ASSET=$(curl -s https://api.github.com/repos/kcrawford/dockutil/releases/latest | jq '.assets[0]')
-URL=$(jq -r '.browser_download_url' <<< $ASSET)
-FILE=$(jq -r '.name' <<< $ASSET)
+URL=$(jq -r '.browser_download_url' <<< "$ASSET")
+FILE=$(jq -r '.name' <<< "$ASSET")
 
 TMPFILE="/tmp/$FILE"
 curl -L "$URL" -o "$TMPFILE"

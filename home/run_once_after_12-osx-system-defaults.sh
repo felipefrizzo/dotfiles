@@ -13,7 +13,7 @@ fi
 # ==============================================
 # Set energy preferences
 # ==============================================
-IS_LAPTOP=`/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book"`
+IS_LAPTOP=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book")
 if [[ "$IS_LAPTOP" != "" ]]; then
     pmset -b sleep 20 disksleep 10 displaysleep 5 halfdim 1
     pmset -c sleep 0 disksleep 15 displaysleep 10 halfdim 1
