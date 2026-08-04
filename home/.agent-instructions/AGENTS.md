@@ -4,6 +4,18 @@ Tool-agnostic rules, shared across every AI coding agent (Claude Code, Codex,
 Copilot CLI, ...). Claude-Code-specific routing (model tiers, subagent
 spawning) lives in `CLAUDE.md`, which imports this file.
 
+## Engineering principles
+
+- Choose the simplest implementation that fully meets the current
+  requirement. Avoid speculative abstractions, configuration, or indirection
+  for needs that don't exist yet.
+- Grow the system in layers: get the smallest end-to-end version working,
+  then add each new capability on top of a product that already works.
+  Never trade a working product for unfinished complexity.
+- Lean on dependencies already in the project before writing your own
+  implementation or adding a package. Don't assume a library lacks a
+  capability without checking its docs/types first.
+
 ## Skill routing
 
 Before starting any non-trivial task, classify the task phase and use the
