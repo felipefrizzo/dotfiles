@@ -17,3 +17,16 @@ alias bat="cat"
 alias ls='eza --icons --color=auto --group-directories-first'
 alias ll='eza -l --icons --color=auto --group-directories-first'
 alias la='eza -la --icons --color=auto --group-directories-first'
+
+ai-memory-up() {
+  docker compose -f "${AI_MEMORY_HOME:?}/docker-compose.yml" --project-directory "$AI_MEMORY_HOME" up -d
+}
+ai-memory-down() {
+  docker compose -f "${AI_MEMORY_HOME:?}/docker-compose.yml" --project-directory "$AI_MEMORY_HOME" down
+}
+ai-memory-logs() {
+  docker compose -f "${AI_MEMORY_HOME:?}/docker-compose.yml" --project-directory "$AI_MEMORY_HOME" logs -f "$@"
+}
+ai-memory-restart() {
+  docker compose -f "${AI_MEMORY_HOME:?}/docker-compose.yml" --project-directory "$AI_MEMORY_HOME" up -d --force-recreate
+}

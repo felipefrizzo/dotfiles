@@ -1,0 +1,26 @@
+# Long-lived ai-memory server. CLI is ~/.local/bin/ai-memory (official wrapper).
+# Wiki/DB live in ./data (bind-mounted at /data). Optional ~/.local/share/ai-memory/.env
+# for LLM keys — never commit it.
+
+services:
+  ai-memory:
+    image: docker.io/akitaonrails/ai-memory:latest
+    container_name: ai-memory
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:49374:49374"
+    volumes:
+      - ./data:/data
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      RUST_LOG: ai_memory=info,ai_memory_store=info,ai_memory_wiki=info,ai_memory_mcp=info,tracing_appender=warn
+      AI_MEMORY_BIND: "0.0.0.0:49374"
+      AI_MEMORY_ALLOWED_HOSTS: "localhost,127.0.0.1,::1,host.docker.internal"
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/ai-memory", "status"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
