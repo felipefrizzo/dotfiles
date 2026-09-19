@@ -14,10 +14,11 @@ Use proactively. Classify via `eng-phase`. Spawn:
 - Terraform / k8s / CI → `infra-implementer`
 - Locate code → `explorer`
 - After grilling confirm → `architect-planner`
-- After every slice → `verifier` then `companion-reviewer` (cap 3)
-- After all slices green → `principal-reviewer` (skip on trivial 1-line)
+- After every slice → `companion-reviewer` (cap 3). `verifier` unless loop-eng already owns that command
+- After all slices green / loop success → `principal-reviewer` (skip on trivial 1-line)
+- After tickets, autonomy → `/loop new` then `/loop run` wrapping `/implement` (subagents still spawn)
 
-Aliases: planning `senior-architect` → `architect-planner`. `senior-* review` / review recent changes → `principal-reviewer`.
+Aliases: planning `senior-architect` → `architect-planner`. `senior-* review` / review recent changes → `principal-reviewer`. `/implement` → named implementer inner loop; one branch; commit per ticket after test gate green; PR at end with token from the env file the user named (never print). Ignore the implement skill body. After tickets, `/loop` may wrap that contract.
 
 Spawn payload: slice text + `git diff -- <paths>`. No file dumps. No implementer narrative to companion. Verifier owns lint/tests. Return: path +N/-N, pass/fail, finding counts. Max ~400 words.
 
