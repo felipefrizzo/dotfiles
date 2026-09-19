@@ -27,15 +27,6 @@
             "statusMessage": "Tracking caveman mode..."
           }
         ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo '[Routing reminder] Before acting: classify task phase per ~/.claude/CLAUDE.md (Model routing + Subagent model routing). If a cheaper model than the current session would suffice, delegate via Agent(...) with explicit model: (haiku/sonnet/opus). Stay on main thread only for trivial conversational replies or work <~3 tool calls.'",
-            "timeout": 2
-          }
-        ]
       }
     ],
     "PreToolUse": [

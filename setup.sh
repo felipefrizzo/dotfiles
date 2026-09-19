@@ -38,6 +38,27 @@ while IFS= read -r source; do
   npx --yes skills@latest add -g -y $source </dev/null
 done < ~/skills-manifest.txt
 
+echo "\nInstalling owned eng-phase skill and named agents"
+mkdir -p ~/.cursor/agents ~/.cursor/skills ~/.agents/skills ~/.codex/agents ~/.codex/skills
+if [ -d ~/.claude/agents ]; then
+  cp -a ~/.claude/agents/. ~/.cursor/agents/
+  python3 "$(dirname "$0")/scripts/md-agents-to-codex-toml.py" ~/.claude/agents ~/.codex/agents
+fi
+if [ -d ~/.claude/skills/eng-phase ]; then
+  cp -a ~/.claude/skills/eng-phase ~/.agents/skills/
+  cp -a ~/.claude/skills/eng-phase ~/.cursor/skills/
+  cp -a ~/.claude/skills/eng-phase ~/.codex/skills/
+fi
+
+echo "\nInstalling loop-eng (Claude Code + Cursor, user home)"
+npx --yes loop-eng install --tool claude-code --target "$HOME"
+npx --yes loop-eng install --tool cursor --target "$HOME"
+if [ -d ~/.claude/skills/loop-engineering ]; then
+  mkdir -p ~/.agents/skills ~/.codex/skills
+  cp -a ~/.claude/skills/loop-engineering ~/.agents/skills/
+  cp -a ~/.claude/skills/loop-engineering ~/.codex/skills/
+fi
+
 echo "\nInstalling caveman skill (Claude Code / Codex / Copilot / Cursor / etc.)"
 curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.sh | bash
 
