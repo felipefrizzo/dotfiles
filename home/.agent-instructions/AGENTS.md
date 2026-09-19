@@ -51,6 +51,9 @@ Marketplace `senior-*` skill folders are gone. The names still work:
   "review recent changes" → `principal-reviewer`
 - `senior-backend` implement → `python-implementer` or `go-implementer`
   from the files in the diff
+- `/implement` → named implementer inner loop + git contract below.
+  Ignore the mattpocock skill body (tests on main, `/code-review`, commit
+  from the skill).
 
 ## Skill / agent routing
 
@@ -78,6 +81,35 @@ Trivial 1-line known-path fix: skip grilling and `architect-planner`. Still run
 verifier + companion. Skip principal.
 
 Carry the no-comment rule in every implementer spawn prompt.
+
+## `/implement` contract
+
+Slash `/implement` after plan/spec/tickets. Main orchestrates. Implementers
+do not git.
+
+1. **One branch** from `master`/`main` for the whole ticket set. Reuse the
+   branch if this work already has one. Do not open a branch per ticket.
+2. **One ticket at a time.** Matching named implementer (one slice) → inner
+   loop. Implementer may load `tdd` at the plan's seams. Verifier owns
+   typecheck/tests. Companion per slice. Cap 3.
+3. **Commit per ticket** on main thread, only after the test gate is green
+   and companion has no red. Conventional commit. Do not commit a red
+   slice. Do not squash tickets together. Do not commit the env file,
+   secrets, or unrelated junk. Inside loop-eng: defer all commits until
+   `run_loop.mjs check` is `success`, then one commit per ticket by that
+   ticket's paths. Committing on a failing full-suite check makes a clean
+   tree look like no-progress.
+4. Next ticket on the same branch.
+5. After the last ticket (or loop success): `principal-reviewer` (skip on a
+   1-line fix). Then `git push -u` and `gh pr create`.
+6. **GitHub token:** `set -a; . <env-file the user named>; set +a`. Prefer
+   `GH_TOKEN`, else `GITHUB_TOKEN`. Never print, echo, or log the file.
+   Never commit it. Never copy it into the repo. If the path was not given
+   this session, stop and ask. On `gh` auth failure: stop; do not change
+   git remotes.
+
+`/code-review` after `/implement` → `principal-reviewer`, not the mattpocock
+review skill on main.
 
 ## Implement inner loop
 
@@ -107,19 +139,40 @@ Main reports: slice name, iteration count, verifier pass/fail, companion
 totals, principal summary. Path +N/-N only. No diffs, no test logs.
 Claude Code: `/ide` for hunks.
 
-Do not run loop-eng and this inner loop on the same slice.
+When loop-eng wraps `/implement`, skip the verifier subagent. The script
+owns that command. Still spawn implementer + companion. Still no file dumps.
+
+## loop-eng after tickets
+
+Human stays in: grill, plan, `/to-spec`, `/to-tickets`. After tickets exist,
+`/loop new` then `/loop run` may own the rest. The loop does **not** replace
+named agents. Each act still classifies via `eng-phase` and spawns.
+
+LOOP_SPEC (must `lint_spec.mjs` exit 0):
+
+- **Goal** — remaining tickets executed per `/implement` (one branch, named
+  implementers, companion, commit-per-ticket after success, PR after
+  principal).
+- **Verification** — the assertive plan's one command. Not "looks done".
+- **Termination** — success = verify 0; max iterations default `3 * ticket
+  count` (min 8); no-progress = 2 identical verify + unchanged working tree.
+- **Scope** — plan file list. Forbidden: env/token files, `terraform apply`,
+  editing tests only to force a pass.
+- **Escalation** — companion red after 3 acts on the same ticket; principal
+  second red; secrets; apply. Stop, wait.
+
+Do not run a second test grind on the same command (no verifier subagent +
+loop-eng `check` both driving `go test`). Do not `/loop` grilling or "make
+it better" with no machine check. Do not mix `loop-me` or Cursor `/loop`
+with this.
 
 ## Three loops — do not mix
 
 - `loop-me` — grill a human workflow spec into `workflows/*.md`. Not coding.
 - Cursor `/loop` — timer to re-run a prompt (CI watch, deploy poll). Not coding.
-- loop-eng — autonomous coding loop. Refuses to start without: concrete end
-  state, verification command, termination (success + cap + no-progress),
-  scope, escalation. Commands: `/loop init|new|harden|verify|run|status`.
-  CLI: `loop-verify`, `loop-run`, `loop-audit`, `loop-cost`. Use for
-  `go test` / `golangci-lint`, `pytest` / `ruff`, or `terraform fmt &&
-  terraform validate && tflint` until green. Never loop grilling or
-  "make it better" with no machine check.
+- loop-eng — autonomous coding loop. After tickets, wraps `/implement`.
+  Also valid alone for lint-until-clean. Commands: `/loop init|new|harden|verify|run|status`.
+  CLI: `loop-verify`, `loop-run`, `loop-audit`, `loop-cost`.
 
 ## Token budget
 

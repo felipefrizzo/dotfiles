@@ -87,10 +87,12 @@ On every user request, before acting:
    Git, loop-eng).
 2. Spawn the named agent with explicit `model:`. Brief it self-containedly
    (slice text + `git diff -- <paths>`). No file dumps.
-3. Implementation is never "done" after the implementer returns. Run the
-   inner loop in AGENTS.md (verifier → companion → cap 3 → principal).
-4. Stay on the main thread only for grilling, one-sentence Q&A, or 3-command
-   git.
+3. Implementation is never "done" after the implementer returns. Inner
+   loop in AGENTS.md. After tickets, `/loop run` may wrap it; then skip
+   the verifier subagent (the script owns the test command).
+4. Stay on the main thread only for grilling, one-sentence Q&A, or git
+   (branch, commit-per-ticket, push, `gh pr create`). `/implement` uses
+   the AGENTS.md contract, not the mattpocock skill body.
 
 Main transcript: path +N/-N, verifier pass/fail, companion totals, principal
 summary. Use `/ide` so hunks open in the editor, not the TUI. Do not restate
