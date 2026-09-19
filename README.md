@@ -55,8 +55,12 @@ Also run [`dotfiles-confidential`](https://github.com/felipefrizzo/dotfiles-conf
 * `~/.agent-instructions/RTK.md`, symlinked into both tools' `RTK.md` -- edit once, every tool
   sees it; the hook that auto-rewrites shell commands through `rtk` is Claude-Code-only, other
   tools invoke `rtk` directly
+* named Claude/Cursor agents in `home/.claude/agents/` (copied to `~/.cursor/agents/`; converted to Codex TOML in `~/.codex/agents/` by `setup.sh`)
+* owned `eng-phase` skill in `home/.claude/skills/eng-phase/` (copied to `~/.agents/skills`, `~/.cursor/skills`, `~/.codex/skills`)
+* Cursor always-on routing rule in `home/.cursor/rules/eng-routing.mdc`
 * third-party agent skills, via `home/skills-manifest.txt` (one `npx skills add <source>` per
   line, regenerate from `~/.agents/.skill-lock.json`)
+* loop-eng (`npx loop-eng install` for Claude Code + Cursor)
 * the [caveman](https://github.com/JuliusBrussee/caveman) skill, via its own installer
 * [graphify](https://pypi.org/project/graphifyy/), via `uv tool install graphifyy` then
   `graphify install --platform claude|codex` -- the package ships its own skill file and

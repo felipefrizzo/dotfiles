@@ -3,6 +3,13 @@
 # line can carry extra flags (e.g. `--skill <name>` to cherry-pick
 # skills instead of installing a whole source).
 # Skill file contents are never tracked here -- only where to fetch them from.
+#
+# loop-eng is installed separately by setup.sh (`npx loop-eng install`).
+# eng-phase is owned and copied from home/.claude/skills/eng-phase.
+# caveman / graphify / ai-memory have their own installers.
 blader/humanizer
-mattpocock/skills
-jeffallan/claude-skills --skill atlassian-mcp --skill cli-developer --skill fastapi-expert --skill fine-tuning-expert --skill golang-pro --skill java-architect --skill kubernetes-specialist --skill mcp-developer --skill python-pro --skill security-reviewer --skill terraform-engineer --skill devops-engineer
+mattpocock/skills --skill grilling --skill grill-with-docs --skill grill-me --skill implement --skill tdd --skill code-review --skill to-spec --skill to-tickets --skill research --skill prototype --skill codebase-design --skill domain-modeling --skill diagnosing-bugs --skill improve-codebase-architecture --skill handoff --skill claude-handoff --skill wayfinder --skill triage --skill writing-for-agents --skill loop-me --skill ask-matt --skill setup-matt-pocock-skills --skill git-guardrails-claude-code --skill resolving-merge-conflicts
+jeffallan/claude-skills --skill golang-pro --skill python-pro --skill fastapi-expert --skill terraform-engineer --skill kubernetes-specialist --skill devops-engineer --skill security-reviewer --skill atlassian-mcp
+addyosmani/agent-skills --skill code-simplification --skill context-engineering --skill deprecation-and-migration --skill documentation-and-adrs --skill debugging-and-error-recovery --skill git-workflow-and-versioning --skill performance-optimization
+JetBrains/go-modern-guidelines --skill use-modern-go
+cloudflare/security-audit-skill

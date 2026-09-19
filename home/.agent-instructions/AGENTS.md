@@ -1,8 +1,8 @@
 # Agent instructions
 
 Tool-agnostic rules, shared across every AI coding agent (Claude Code, Codex,
-Copilot CLI, ...). Claude-Code-specific routing (model tiers, subagent
-spawning) lives in `CLAUDE.md`, which imports this file.
+Copilot CLI, Cursor, ...). Claude-Code-specific model tiers live in `CLAUDE.md`,
+which imports this file.
 
 ## Engineering principles
 
@@ -15,32 +15,128 @@ spawning) lives in `CLAUDE.md`, which imports this file.
 - Lean on dependencies already in the project before writing your own
   implementation or adding a package. Don't assume a library lacks a
   capability without checking its docs/types first.
+- Default to no comments, in any language. Self-explanatory naming and
+  structure is the bar, not commentary. Unexported/private functions and
+  internal helpers should never carry explanatory comments -- if one seems
+  needed, that's a signal to rename or restructure, not to document the
+  confusion. Only write a comment when it captures a non-obvious WHY (a
+  hidden constraint, a workaround for a specific bug, a subtle invariant)
+  that naming and structure genuinely cannot express. Public/exported APIs
+  may carry doc comments where the language convention expects them (e.g.
+  Go exported identifiers, public library entry points). This applies to
+  every agent and every delegated/subagent task, not just the main
+  session -- when delegating implementation work, carry this rule into the
+  subagent prompt explicitly, since subagents don't inherit memory.
 
-## Skill routing
+## Isolation-first
 
-Before starting any non-trivial task, classify the task phase and use the
-matching skill if it's installed for this agent:
+Main thread orchestrates. It does not do noisy work.
 
-- Planning / PRD / requirements -> `prd` skill, then `senior-architect` for design.
-- Architecture / design decisions -> `senior-architect` skill.
-- Go implementation -> `golang-pro` skill.
-- Python implementation -> `python-pro` skill.
-- Review / PR quality -> `code-review` skill.
-- Debugging -> `diagnosing-bugs` skill.
-- Verification / test-first work -> `tdd` skill.
+Main may: grill, pick the next agent, ask a decision, report the contract, stop.
 
-If the required skill is unavailable for this agent, say so before continuing
-instead of silently skipping it.
+Main must not: read large files, dump grep, run test suites, apply multi-file
+edits, paste diffs into the reply.
 
-Do not implement before selecting the task phase, relevant skills, files to
-inspect, and verification plan.
+Stay on main only for grilling (needs user answers), one-sentence Q&A, or
+3-command git. Isolation first, then cheapest model that can do the child job.
 
-For mixed tasks, use skills in sequence:
+Load `eng-phase` at the start of every non-trivial request (model-invoked).
 
-1. planning/architecture
-2. language-specific implementation
-3. verification
-4. review
+## Aliases
+
+Marketplace `senior-*` skill folders are gone. The names still work:
+
+- `senior-architect` during planning / design → `architect-planner`
+- `senior-architect review` / `senior-backend review` / `senior-* review` /
+  "review recent changes" → `principal-reviewer`
+- `senior-backend` implement → `python-implementer` or `go-implementer`
+  from the files in the diff
+
+## Skill / agent routing
+
+Classify the phase, then spawn. Do not implement on the main thread.
+
+1. New work / design / grilling → `grilling` on main. After the user confirms
+   shared understanding → spawn `architect-planner`. Do not wait for `/to-spec`.
+2. Go → `go-implementer` (`golang-pro` + `use-modern-go`). Then inner loop.
+3. Python → `python-implementer` (`python-pro`; `fastapi-expert` if FastAPI).
+   Then inner loop.
+4. Terraform / k8s / CI → `infra-implementer`. Then inner loop.
+5. "Where is X" → `explorer` (path:line contract, not an essay).
+6. Docs / READMEs / ADRs / user-facing prose → `humanizer` after the draft.
+   Not for source comments.
+7. Debug → `diagnosing-bugs` (via explorer + implementer inner loop as needed).
+8. Open-ended machine-checkable grind → loop-eng (`/loop new` then `/loop run`).
+   Not the inner loop. Not `loop-me`. Not Cursor `/loop`.
+
+If a required skill is unavailable, say so before continuing.
+
+Medium/large implementation without an assertive plan (locked decisions, exact
+files, verifier command, first slice): implementers refuse.
+
+Trivial 1-line known-path fix: skip grilling and `architect-planner`. Still run
+verifier + companion. Skip principal.
+
+Carry the no-comment rule in every implementer spawn prompt.
+
+## Implement inner loop
+
+Maker and checker are different agents. Implementer does not review itself.
+Companion does not edit. Verifier does not design. Verifier owns lint/tests;
+implementer does not re-run the suite.
+
+After every implementer spawn:
+
+1. Spawn `verifier` (Haiku). Fail → same implementer with the verifier output.
+   Do not review red tests.
+2. Pass → spawn `companion-reviewer` (Haiku if diff under ~50 lines, else
+   Sonnet). Red or slice-creep → implementer again. Yellow: fix if cheap,
+   else record and continue.
+3. Repeat until companion has no red and verifier passes, or **cap 3** on
+   the same slice.
+4. Cap hit → stop. Report last fail. No fourth attempt.
+5. All slices green → spawn `principal-reviewer` once (Standards + Spec vs
+   the assertive plan; `security-audit` if auth/input/secrets/cloud IAM).
+6. Principal red → one more inner-loop pass, then principal again. Second
+   principal red → escalate to the user.
+
+Spawn payload: slice text + `git diff -- <paths>`. No file dumps. No
+implementer narrative to companion.
+
+Main reports: slice name, iteration count, verifier pass/fail, companion
+totals, principal summary. Path +N/-N only. No diffs, no test logs.
+Claude Code: `/ide` for hunks.
+
+Do not run loop-eng and this inner loop on the same slice.
+
+## Three loops — do not mix
+
+- `loop-me` — grill a human workflow spec into `workflows/*.md`. Not coding.
+- Cursor `/loop` — timer to re-run a prompt (CI watch, deploy poll). Not coding.
+- loop-eng — autonomous coding loop. Refuses to start without: concrete end
+  state, verification command, termination (success + cap + no-progress),
+  scope, escalation. Commands: `/loop init|new|harden|verify|run|status`.
+  CLI: `loop-verify`, `loop-run`, `loop-audit`, `loop-cost`. Use for
+  `go test` / `golangci-lint`, `pytest` / `ruff`, or `terraform fmt &&
+  terraform validate && tflint` until green. Never loop grilling or
+  "make it better" with no machine check.
+
+## Token budget
+
+Isolation protects main context; it does not cut the bill. Spend less:
+
+- Tests once (verifier). Fail output: first failing names + last ~30 lines.
+- Children get diffs and slice text, not `cat` of whole files.
+- Haiku: verifier, one-file lookup, conventional commit from a reviewed diff,
+  companion under ~50 lines. Sonnet: implementers, larger companion, principal,
+  architect-planner. Opus: only after Sonnet failed, with why / evidence /
+  bounded task. Never Opus for Explore or Git.
+- No subagent for 3-command git. Cap 3. Skip principal on 1-line fixes.
+- Skill bodies stay on disk. Follow "load when" tables. Do not paste SKILL.md.
+- Shell through `rtk` when available. Affected-package tests, not `./...`
+  unless risk requires the full suite.
+- Unrelated next task → `/clear` or a new chat, not compact-and-continue.
+- Caveman on main replies only. Code in files stays normal.
 
 ## Git operation routing
 
@@ -94,26 +190,6 @@ prompts for credentials, etc.):
    unlock/approve the agent or fix auth -- do not change transport, do not
    disable host key checking, do not attempt to read, print, or export any
    SSH key, passphrase, or credential to make it succeed.
-
-## Token discipline
-
-Use the cheapest sufficient process.
-
-Default behavior:
-- Do not print large file contents.
-- Do not summarize obvious code.
-- Do not explain every command.
-- Do not produce long reasoning traces.
-- Prefer diffs, file paths, and concise findings.
-- Inspect targeted symbols/files before broad search.
-- Run affected tests before full test suite when safe.
-- Escalate verification only if affected tests pass or risk requires full suite.
-- Stop after two repeated failures with the same root cause.
-- Keep final response to changed files, verification result, and real risks.
-
-For trivial changes, skip formal planning.
-For small changes, use a compact plan.
-For medium/large changes, use the full engineering loop.
 
 ## RTK CLI
 

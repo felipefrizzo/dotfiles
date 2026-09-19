@@ -3,3 +3,12 @@
 # curated subset of AI tool config under home/, so un-ignore it here.
 !home/.claude/
 !home/.claude/**
+
+# Global gitignore also excludes scripts/. The Codex agent converter lives here.
+!scripts/
+!scripts/**
+
+# Cursor user rule (agents/skills are copied from home/.claude by setup.sh).
+!home/.cursor/
+!home/.cursor/rules/
+!home/.cursor/rules/**
