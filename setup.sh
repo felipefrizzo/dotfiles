@@ -46,6 +46,9 @@ uv tool install graphifyy
 graphify install --platform claude
 graphify install --platform codex
 
+echo "\nInstalling ai-memory"
+zsh install-ai-memory.sh
+
 echo "\nInstalling iTerm2 dynamic profile"
 mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles
 cp iterm/dynamic-profile.json ~/Library/Application\ Support/iTerm2/DynamicProfiles/felipefrizzo.json

@@ -18,6 +18,7 @@ This include the following step.
 * install third-party agent skills
 * install the caveman skill for every AI agent found on the machine
 * install graphify (uv tool + skill)
+* install ai-memory (Docker server, host CLI wrapper, Claude Code / Codex MCP + hooks)
 * install the iTerm2 dynamic profile
 
 ## Installation
@@ -65,3 +66,22 @@ Also run [`dotfiles-confidential`](https://github.com/felipefrizzo/dotfiles-conf
 **Not tracked, ever:** API tokens/credentials of any kind. `GITHUB_TOKEN` and `JIRA_TOKEN` (used
 by the `rtk` hook and Codex's shell environment policy) must be set up manually on each machine --
 they are intentionally absent from every file this repo manages, public or confidential.
+
+## ai-memory
+
+`setup.sh` runs `install-ai-memory.sh` after Docker Desktop is on the Brewfile. That script:
+
+* installs the official CLI wrapper to `~/.local/bin/ai-memory`
+* downloads the native macOS binary into `~/.local/share/ai-memory` (hooks stay posix-native)
+* starts `akitaonrails/ai-memory:latest` with `restart: unless-stopped`, loopback `127.0.0.1:49374`, data in `~/.local/share/ai-memory/data`
+* runs `install-mcp` / `install-hooks` for Claude Code and Codex
+
+Re-runs are idempotent and do not wipe the wiki. Optional LLM keys go in
+`~/.local/share/ai-memory/.env` (never in this repo), then `ai-memory-restart`.
+
+Shell helpers (after `source ~/.zprofile`): `ai-memory status`, `ai-memory-up`,
+`ai-memory-down`, `ai-memory-logs`, `ai-memory-restart`. Launch agents as usual
+(`claude`, `codex`); first Codex session must trust the new hooks in the TUI.
+After a Codex session, run `ai-memory finalize-session`.
+
+Set `AI_MEMORY_HOME` before setup if you want a different data root.

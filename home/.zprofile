@@ -1,5 +1,12 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# ai-memory CLI wrapper lives here; Docker Desktop also drops docker on PATH later.
+export PATH="$HOME/.local/bin:$PATH"
+
+export AI_MEMORY_HOME="$HOME/.local/share/ai-memory"
+export AI_MEMORY_DATA_DIR="$AI_MEMORY_HOME/data"
+export AI_MEMORY_NATIVE_BIN="$AI_MEMORY_HOME/ai-memory"
+
 export EDITOR="code"
 
 export GOPATH="$HOME/workspaces/go/"
