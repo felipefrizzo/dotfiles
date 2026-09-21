@@ -1,8 +1,12 @@
 # Agent instructions
 
 Tool-agnostic rules, shared across every AI coding agent (Claude Code, Codex,
-Copilot CLI, Cursor, ...). Claude-Code-specific model tiers live in `CLAUDE.md`,
-which imports this file.
+Copilot CLI, Cursor, OpenCode, ...). Claude-Code-specific model tiers live in
+`CLAUDE.md`, which imports this file. OpenCode loads this file from
+`~/.config/opencode/AGENTS.md` and named agents from
+`~/.config/opencode/agents/` (`mode: subagent`). It does not read `CLAUDE.md`.
+Spawn via Task / `@go-implementer` (and the other named agents). Do not do
+the child job as the Build primary.
 
 ## Engineering principles
 

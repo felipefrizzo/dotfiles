@@ -14,7 +14,7 @@ This include the following step.
 * copy bash configurations to home user folder
 * install latest updates from app store
 * configure Dock with the applications
-* link AI agent instructions (Claude Code / Codex / Copilot) to a single source
+* link AI agent instructions (Claude Code / Codex / Copilot / OpenCode) to a single source
 * install third-party agent skills
 * install the caveman skill for every AI agent found on the machine
 * install graphify (uv tool + skill)
@@ -38,7 +38,7 @@ rm -rf dotfiles
 Also run [`dotfiles-confidential`](https://github.com/felipefrizzo/dotfiles-confidential)'s
 `setup.sh` for personal casks/formulas and `.ssh/config` that don't belong in a public repo.
 
-## AI agent config (Claude Code / Codex / Copilot)
+## AI agent config (Claude Code / Codex / Copilot / OpenCode)
 
 `setup.sh` tracks and restores:
 
@@ -47,20 +47,24 @@ Also run [`dotfiles-confidential`](https://github.com/felipefrizzo/dotfiles-conf
   `shell_environment_policy.inherit`) -- the rest of that file is written by the ChatGPT
   desktop app itself and regenerates from normal use, so it's intentionally not tracked
 * `~/.agent-instructions/AGENTS.md` (tool-agnostic rules), symlinked into Codex's `AGENTS.md`,
-  Copilot's `copilot-instructions.md`, and `~/.claude/AGENTS.md` directly
+  Copilot's `copilot-instructions.md`, `~/.claude/AGENTS.md`, and
+  `~/.config/opencode/AGENTS.md` (OpenCode V2 reads that path only; not `CLAUDE.md`)
 * `~/.agent-instructions/CLAUDE.md` (Claude-Code-specific model/subagent routing), symlinked
   into `~/.claude/CLAUDE.md`. It imports `@AGENTS.md`, which needs `~/.claude/AGENTS.md` to
   exist as a sibling file since `@file` import resolution isn't guaranteed to follow the
   symlink to its real path -- hence the separate `~/.claude/AGENTS.md` symlink above
-* `~/.agent-instructions/RTK.md`, symlinked into both tools' `RTK.md` -- edit once, every tool
-  sees it; the hook that auto-rewrites shell commands through `rtk` is Claude-Code-only, other
-  tools invoke `rtk` directly
-* named Claude/Cursor agents in `home/.claude/agents/` (copied to `~/.cursor/agents/`; converted to Codex TOML in `~/.codex/agents/` by `setup.sh`)
-* owned `eng-phase` skill in `home/.claude/skills/eng-phase/` (copied to `~/.agents/skills`, `~/.cursor/skills`, `~/.codex/skills`)
+* `~/.agent-instructions/RTK.md`, symlinked into Claude, Codex, and OpenCode `RTK.md` --
+  edit once, every tool sees it; the hook that auto-rewrites shell commands through `rtk`
+  is Claude-Code-only, other tools invoke `rtk` directly
+* named Claude/Cursor agents in `home/.claude/agents/` (copied to `~/.cursor/agents/`;
+  converted to Codex TOML in `~/.codex/agents/` and OpenCode markdown in
+  `~/.config/opencode/agents/` by `setup.sh`, with `mode: subagent`)
+* owned `eng-phase` skill in `home/.claude/skills/eng-phase/` (copied to `~/.agents/skills`,
+  `~/.cursor/skills`, `~/.codex/skills`, `~/.config/opencode/skills`)
 * Cursor always-on routing rule in `home/.cursor/rules/eng-routing.mdc`
 * third-party agent skills, via `home/skills-manifest.txt` (one `npx skills add <source>` per
   line, regenerate from `~/.agents/.skill-lock.json`)
-* loop-eng (`npx loop-eng install` for Claude Code + Cursor)
+* loop-eng (`npx loop-eng install` for Claude Code + Cursor + OpenCode)
 * the [caveman](https://github.com/JuliusBrussee/caveman) skill, via its own installer
 * [graphify](https://pypi.org/project/graphifyy/), via `uv tool install graphifyy` then
   `graphify install --platform claude|codex` -- the package ships its own skill file and
