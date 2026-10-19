@@ -8,7 +8,7 @@ Claude-Code-specific routing on top of the tool-agnostic rules below.
 
 Default model: Sonnet.
 
-Haiku 5.5 id: `claude-haiku-5-5`. On Amazon Bedrock: `anthropic.claude-haiku-5-5`. Pass that id. The `haiku` alias is still 4.5 off the Anthropic API.
+Pass `model: haiku`. The Agent tool rejects a versioned id such as `claude-haiku-5-5`. On the Anthropic API the alias is Haiku 5.5.
 
 Spawn Haiku 5.5 for:
 
@@ -54,22 +54,22 @@ Never use Opus for verifier.
 The main session's model is fixed at session start. Subagents (`Agent(...)`)
 are the only place inside a running session where the model can actually be
 chosen, so always pass an explicit `model:` override on every spawn -- never
-rely on inheritance. Agent frontmatter keeps `model: haiku` so other harnesses can map it; the spawn argument is `claude-haiku-5-5`.
+rely on inheritance. Pass `haiku`, not a versioned model id.
 
 Use the named agents in `~/.claude/agents/` when they match:
 
 - `go-implementer` / `python-implementer` / `infra-implementer` → sonnet
-- `explorer` → `claude-haiku-5-5` (sonnet after a failed locate or a cross-repo hunt)
+- `explorer` → `haiku` (sonnet after a failed locate or a cross-repo hunt)
 - `architect-planner` → sonnet
-- `companion-reviewer` → `claude-haiku-5-5` if diff < ~200 lines, else sonnet
+- `companion-reviewer` → `haiku` if diff < ~200 lines, else sonnet
 - `principal-reviewer` → sonnet
-- `verifier` → `claude-haiku-5-5`
-- `git-operator` → `claude-haiku-5-5`
+- `verifier` → `haiku`
+- `git-operator` → `haiku`
 
 Special cases:
 
-- `claude-code-guide` → `claude-haiku-5-5`
-- built-in `Explore` → `claude-haiku-5-5`. Prefer the named `explorer` agent.
+- `claude-code-guide` → `haiku`
+- built-in `Explore` → `haiku`. Prefer the named `explorer` agent.
 - Routine `git`, `gh`, and `glab` / `gl` → `git-operator`. Sonnet only for the escalation list above.
 
 When unsure between two tiers, pick the cheaper one and escalate only on
