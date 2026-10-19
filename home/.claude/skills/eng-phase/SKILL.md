@@ -17,13 +17,13 @@ Classify. Spawn. Do not do the child's job on the main thread.
 | Docs / README / ADR | draft, then `humanizer` |
 | `senior-* review` / review recent changes | if inner loop not yet green, finish it; else `principal-reviewer` |
 | Lint-until-clean / unnamed grind with a real check | loop-eng `/loop new` then `/loop run` |
-| Git, gh, glab/gl | cheapest model. Claude Code spawns `git-operator` (Haiku 5.5). Sonnet only for conflicts, rebase, history rewrite, commit split, secrets, auth, remote URL |
+| Git, gh, glab/gl | cheapest model. Claude Code spawns `git-operator` with `model: haiku`. Sonnet only for conflicts, rebase, history rewrite, commit split, secrets, auth, remote URL |
 
 Inner loop after every implementer (main orchestrates):
 
-1. `verifier` (cheapest model; Claude Code: Haiku 5.5) — skip if loop-eng `check` owns that command
+1. `verifier` (cheapest model; Claude Code: `model: haiku`) — skip if loop-eng `check` owns that command
 2. fail → same implementer with verifier output (do not review red tests)
-3. pass → `companion-reviewer` (cheapest model if diff < ~200 lines, else the default coding model; Claude Code: Haiku 5.5, else Sonnet)
+3. pass → `companion-reviewer` (cheapest model if diff < ~200 lines, else the default coding model; Claude Code: `model: haiku`, else `sonnet`)
 4. companion red or slice-creep → implementer again
 5. cap 3 on the same slice → stop, report, no fourth try
 6. all slices green → `principal-reviewer` once (skip on trivial 1-line fixes)
