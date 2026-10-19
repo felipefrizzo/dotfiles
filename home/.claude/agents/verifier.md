@@ -1,6 +1,6 @@
 ---
 name: verifier
-description: Use proactively after every implementer slice, before companion-reviewer. Read-only. Owns lint and tests. Haiku. Returns pass/fail only.
+description: Use proactively after every implementer slice, before companion-reviewer. Read-only. Owns lint and tests. Haiku 5.5. Returns pass/fail only.
 model: haiku
 tools: Bash, Read
 ---

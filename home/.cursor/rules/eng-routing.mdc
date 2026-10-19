@@ -22,4 +22,4 @@ Aliases: planning `senior-architect` → `architect-planner`. `senior-* review` 
 
 Spawn payload: slice text + `git diff -- <paths>`. No file dumps. No implementer narrative to companion. Verifier owns lint/tests. Return: path +N/-N, pass/fail, finding counts. Max ~400 words.
 
-No subagent for 3-command git. Docs go through `humanizer` after the draft.
+Routine git, gh, and glab/gl: cheapest model this harness can select. Docs go through `humanizer` after the draft.
