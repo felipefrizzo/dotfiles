@@ -41,8 +41,10 @@ Main may: grill, pick the next agent, ask a decision, report the contract, stop.
 Main must not: read large files, dump grep, run test suites, apply multi-file
 edits, paste diffs into the reply.
 
-Stay on main only for grilling (needs user answers), one-sentence Q&A, or
-3-command git. Isolation first, then cheapest model that can do the child job.
+Stay on main only for grilling (needs user answers) or one-sentence Q&A.
+Routine `git`, `gh`, and GitLab CLI (`glab` or `gl`) use the cheapest model
+the harness can select. Claude Code spawns `git-operator`. Isolation first,
+then cheapest model that can do the child job.
 
 Load `eng-phase` at the start of every non-trivial request (model-invoked).
 
@@ -96,7 +98,7 @@ do not git.
 2. **One ticket at a time.** Matching named implementer (one slice) → inner
    loop. Implementer may load `tdd` at the plan's seams. Verifier owns
    typecheck/tests. Companion per slice. Cap 3.
-3. **Commit per ticket** on main thread, only after the test gate is green
+3. **Commit per ticket** on the cheap git tier, only after the test gate is green
    and companion has no red. Conventional commit. Do not commit a red
    slice. Do not squash tickets together. Do not commit the env file,
    secrets, or unrelated junk. Inside loop-eng: defer all commits until
@@ -105,7 +107,7 @@ do not git.
    tree look like no-progress.
 4. Next ticket on the same branch.
 5. After the last ticket (or loop success): `principal-reviewer` (skip on a
-   1-line fix). Then `git push -u` and `gh pr create`.
+   1-line fix). Then `git push -u` and `gh pr create` (or `glab` / `gl` `mr create`) on that same cheap tier.
 6. **GitHub token:** `set -a; . <env-file the user named>; set +a`. Prefer
    `GH_TOKEN`, else `GITHUB_TOKEN`. Never print, echo, or log the file.
    Never commit it. Never copy it into the repo. If the path was not given
@@ -123,10 +125,10 @@ implementer does not re-run the suite.
 
 After every implementer spawn:
 
-1. Spawn `verifier` (Haiku). Fail → same implementer with the verifier output.
+1. Spawn `verifier` on the cheapest model. Fail → same implementer with the verifier output.
    Do not review red tests.
-2. Pass → spawn `companion-reviewer` (Haiku if diff under ~50 lines, else
-   Sonnet). Red or slice-creep → implementer again. Yellow: fix if cheap,
+2. Pass → spawn `companion-reviewer` (cheapest model if diff under ~200 lines,
+   else the default coding model). Red or slice-creep → implementer again. Yellow: fix if cheap,
    else record and continue.
 3. Repeat until companion has no red and verifier passes, or **cap 3** on
    the same slice.
@@ -184,11 +186,13 @@ Isolation protects main context; it does not cut the bill. Spend less:
 
 - Tests once (verifier). Fail output: first failing names + last ~30 lines.
 - Children get diffs and slice text, not `cat` of whole files.
-- Haiku: verifier, one-file lookup, conventional commit from a reviewed diff,
-  companion under ~50 lines. Sonnet: implementers, larger companion, principal,
-  architect-planner. Opus: only after Sonnet failed, with why / evidence /
-  bounded task. Never Opus for Explore or Git.
-- No subagent for 3-command git. Cap 3. Skip principal on 1-line fixes.
+- Cheapest model: verifier, explorer, companion under ~200 lines, routine
+  `git` / `gh` / `glab`. Claude Code uses Haiku 5.5 for that set (see
+  `CLAUDE.md`). Default coding model: implementers, larger companion,
+  principal, architect-planner. Strongest model: only after the coding model
+  failed, with why / evidence / bounded task. Never the strongest model for
+  Explore or Git.
+- Cap 3. Skip principal on 1-line fixes.
 - Skill bodies stay on disk. Follow "load when" tables. Do not paste SKILL.md.
 - Shell through `rtk` when available. Affected-package tests, not `./...`
   unless risk requires the full suite.
@@ -197,8 +201,8 @@ Isolation protects main context; it does not cut the bill. Spend less:
 
 ## Git operation routing
 
-Use the fastest/cheapest model tier this agent has available for routine Git
-operations:
+Request the cheapest model this harness can select for routine `git`, `gh`,
+and GitLab CLI (`glab` or `gl`). Claude Code spawns `git-operator`.
 
 - git status
 - git diff --stat
@@ -207,6 +211,8 @@ operations:
 - git push
 - creating simple branch names
 - writing conventional commit messages from an already-reviewed diff
+- `gh pr create`, `gh pr view`, `gh pr checks`, `gh pr diff`
+- `glab` or `gl`: `mr create`, `mr view`, `ci status`, `mr diff`
 
 Escalate to the default/main tier only when:
 - merge conflicts exist

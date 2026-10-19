@@ -8,27 +8,29 @@ Claude-Code-specific routing on top of the tool-agnostic rules below.
 
 Default model: Sonnet.
 
-Use Haiku for:
+Haiku 5.5 id: `claude-haiku-5-5`. On Amazon Bedrock: `anthropic.claude-haiku-5-5`. Pass that id. The `haiku` alias is still 4.5 off the Anthropic API.
 
-- verifier (lint + tests)
-- companion-reviewer when the diff is under ~50 lines
-- simple boilerplate
-- documentation edits
-- formatting-only changes
-- trivial test generation
+Spawn Haiku 5.5 for:
+
+- `verifier`
+- `explorer`
+- `companion-reviewer` when the diff is under ~200 lines
+- `git-operator` for routine `git`, `gh`, and `glab` / `gl`
+- `claude-code-guide`
+- boilerplate, documentation edits, formatting-only changes, trivial test generation
 - summarizing logs or diffs
-- one-file lookups
-- routine Git operations (see AGENTS.md)
+- debugging when the failure signal is already clear
 
 Use Sonnet for:
 
 - implementers (Go / Python / IaC)
-- companion-reviewer on larger diffs
-- principal-reviewer
-- architect-planner
-- explorer (broad)
+- `companion-reviewer` when the diff is over ~200 lines
+- `principal-reviewer`
+- `architect-planner`
+- `explorer` after a Haiku locate failed, or a hunt that crosses repos
 - refactoring
-- debugging with clear failure signals
+- debugging when the failure signal is ambiguous
+- `git` / `gh` / `glab` escalation: conflicts, rebase, history rewrite, commit split or squash, secrets, auth failure, remote URL change
 
 Use Opus only for:
 
@@ -44,37 +46,31 @@ Before escalating to Opus, state:
 2. what evidence justifies escalation
 3. expected bounded task for Opus
 
-Never use Opus for routine edits, formatting, boilerplate, Git, or Explore.
+Never use Opus for routine edits, formatting, boilerplate, Git, `gh`, `glab`, or Explore.
 Never use Opus for verifier.
-
-Git operation routing (see AGENTS.md) maps to Haiku for the routine ops list,
-Sonnet for the escalation cases -- never Opus for Git unless the Git state is
-complex or risky.
 
 ## Subagent model routing
 
 The main session's model is fixed at session start. Subagents (`Agent(...)`)
 are the only place inside a running session where the model can actually be
 chosen, so always pass an explicit `model:` override on every spawn -- never
-rely on inheritance.
+rely on inheritance. Agent frontmatter keeps `model: haiku` so other harnesses can map it; the spawn argument is `claude-haiku-5-5`.
 
 Use the named agents in `~/.claude/agents/` when they match:
 
 - `go-implementer` / `python-implementer` / `infra-implementer` → sonnet
-- `explorer` → sonnet (haiku for a single trivial file lookup)
+- `explorer` → `claude-haiku-5-5` (sonnet after a failed locate or a cross-repo hunt)
 - `architect-planner` → sonnet
-- `companion-reviewer` → haiku if diff < ~50 lines, else sonnet
+- `companion-reviewer` → `claude-haiku-5-5` if diff < ~200 lines, else sonnet
 - `principal-reviewer` → sonnet
-- `verifier` → haiku
+- `verifier` → `claude-haiku-5-5`
+- `git-operator` → `claude-haiku-5-5`
 
 Special cases:
 
-- `claude-code-guide` → haiku
-- built-in `Explore` → sonnet default; haiku for one-file lookup. Prefer the
-  named `explorer` agent (compressed contract).
-- Git delegated to a subagent → haiku unless complex (conflicts, history
-  rewrite, commit splitting, large/risky diffs) → then sonnet. Prefer main
-  thread for 3-command git; do not spawn.
+- `claude-code-guide` → `claude-haiku-5-5`
+- built-in `Explore` → `claude-haiku-5-5`. Prefer the named `explorer` agent.
+- Routine `git`, `gh`, and `glab` / `gl` → `git-operator`. Sonnet only for the escalation list above.
 
 When unsure between two tiers, pick the cheaper one and escalate only on
 failure. Never default to Opus for routine work.
@@ -90,8 +86,8 @@ On every user request, before acting:
 3. Implementation is never "done" after the implementer returns. Inner
    loop in AGENTS.md. After tickets, `/loop run` may wrap it; then skip
    the verifier subagent (the script owns the test command).
-4. Stay on the main thread only for grilling, one-sentence Q&A, or git
-   (branch, commit-per-ticket, push, `gh pr create`). `/implement` uses
+4. Stay on the main thread only for grilling and one-sentence Q&A. Routine
+   `git`, `gh`, and `glab` / `gl` spawn `git-operator`. `/implement` uses
    the AGENTS.md contract, not the mattpocock skill body.
 
 Main transcript: path +N/-N, verifier pass/fail, companion totals, principal

@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 
 MODELS = {
-    "haiku": "anthropic/claude-haiku-4-5",
+    "haiku": "anthropic/claude-haiku-5-5",
     "sonnet": "anthropic/claude-sonnet-4-5",
     "opus": "anthropic/claude-opus-4-5",
 }
@@ -19,6 +19,7 @@ EDIT_DENY = {
     "companion-reviewer",
     "principal-reviewer",
     "verifier",
+    "git-operator",
 }
 BASH_DENY = {"explorer"}
 
